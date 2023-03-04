@@ -1,0 +1,607 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A3042B1B29B3727D0081CEF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3042B1A29B3727D0081CEF3 /* AppDelegate.swift */; };
+		A3042B1D29B3727D0081CEF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3042B1C29B3727D0081CEF3 /* SceneDelegate.swift */; };
+		A3042B1F29B3727D0081CEF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3042B1E29B3727D0081CEF3 /* ViewController.swift */; };
+		A3042B2229B3727D0081CEF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3042B2029B3727D0081CEF3 /* Main.storyboard */; };
+		A3042B2429B3727E0081CEF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3042B2329B3727E0081CEF3 /* Assets.xcassets */; };
+		A3042B2729B3727E0081CEF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3042B2529B3727E0081CEF3 /* LaunchScreen.storyboard */; };
+		A3042B3229B3727E0081CEF3 /* LordOfTheRingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3042B3129B3727E0081CEF3 /* LordOfTheRingsTests.swift */; };
+		A3042B3C29B3727E0081CEF3 /* LordOfTheRingsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3042B3B29B3727E0081CEF3 /* LordOfTheRingsUITests.swift */; };
+		A3042B3E29B3727E0081CEF3 /* LordOfTheRingsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3042B3D29B3727E0081CEF3 /* LordOfTheRingsUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A3042B2E29B3727E0081CEF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3042B0F29B3727D0081CEF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3042B1629B3727D0081CEF3;
+			remoteInfo = LordOfTheRings;
+		};
+		A3042B3829B3727E0081CEF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3042B0F29B3727D0081CEF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3042B1629B3727D0081CEF3;
+			remoteInfo = LordOfTheRings;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A3042B1729B3727D0081CEF3 /* LordOfTheRings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LordOfTheRings.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3042B1A29B3727D0081CEF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A3042B1C29B3727D0081CEF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A3042B1E29B3727D0081CEF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A3042B2129B3727D0081CEF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A3042B2329B3727E0081CEF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A3042B2629B3727E0081CEF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A3042B2829B3727E0081CEF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3042B2D29B3727E0081CEF3 /* LordOfTheRingsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LordOfTheRingsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3042B3129B3727E0081CEF3 /* LordOfTheRingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LordOfTheRingsTests.swift; sourceTree = "<group>"; };
+		A3042B3729B3727E0081CEF3 /* LordOfTheRingsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LordOfTheRingsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3042B3B29B3727E0081CEF3 /* LordOfTheRingsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LordOfTheRingsUITests.swift; sourceTree = "<group>"; };
+		A3042B3D29B3727E0081CEF3 /* LordOfTheRingsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LordOfTheRingsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A3042B1429B3727D0081CEF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3042B2A29B3727E0081CEF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3042B3429B3727E0081CEF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A3042B0E29B3727D0081CEF3 = {
+			isa = PBXGroup;
+			children = (
+				A3042B1929B3727D0081CEF3 /* LordOfTheRings */,
+				A3042B3029B3727E0081CEF3 /* LordOfTheRingsTests */,
+				A3042B3A29B3727E0081CEF3 /* LordOfTheRingsUITests */,
+				A3042B1829B3727D0081CEF3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A3042B1829B3727D0081CEF3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A3042B1729B3727D0081CEF3 /* LordOfTheRings.app */,
+				A3042B2D29B3727E0081CEF3 /* LordOfTheRingsTests.xctest */,
+				A3042B3729B3727E0081CEF3 /* LordOfTheRingsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A3042B1929B3727D0081CEF3 /* LordOfTheRings */ = {
+			isa = PBXGroup;
+			children = (
+				A3042B1A29B3727D0081CEF3 /* AppDelegate.swift */,
+				A3042B1C29B3727D0081CEF3 /* SceneDelegate.swift */,
+				A3042B1E29B3727D0081CEF3 /* ViewController.swift */,
+				A3042B2029B3727D0081CEF3 /* Main.storyboard */,
+				A3042B2329B3727E0081CEF3 /* Assets.xcassets */,
+				A3042B2529B3727E0081CEF3 /* LaunchScreen.storyboard */,
+				A3042B2829B3727E0081CEF3 /* Info.plist */,
+			);
+			path = LordOfTheRings;
+			sourceTree = "<group>";
+		};
+		A3042B3029B3727E0081CEF3 /* LordOfTheRingsTests */ = {
+			isa = PBXGroup;
+			children = (
+				A3042B3129B3727E0081CEF3 /* LordOfTheRingsTests.swift */,
+			);
+			path = LordOfTheRingsTests;
+			sourceTree = "<group>";
+		};
+		A3042B3A29B3727E0081CEF3 /* LordOfTheRingsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A3042B3B29B3727E0081CEF3 /* LordOfTheRingsUITests.swift */,
+				A3042B3D29B3727E0081CEF3 /* LordOfTheRingsUITestsLaunchTests.swift */,
+			);
+			path = LordOfTheRingsUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A3042B1629B3727D0081CEF3 /* LordOfTheRings */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3042B4129B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "LordOfTheRings" */;
+			buildPhases = (
+				A3042B1329B3727D0081CEF3 /* Sources */,
+				A3042B1429B3727D0081CEF3 /* Frameworks */,
+				A3042B1529B3727D0081CEF3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LordOfTheRings;
+			productName = LordOfTheRings;
+			productReference = A3042B1729B3727D0081CEF3 /* LordOfTheRings.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A3042B2C29B3727E0081CEF3 /* LordOfTheRingsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3042B4429B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "LordOfTheRingsTests" */;
+			buildPhases = (
+				A3042B2929B3727E0081CEF3 /* Sources */,
+				A3042B2A29B3727E0081CEF3 /* Frameworks */,
+				A3042B2B29B3727E0081CEF3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A3042B2F29B3727E0081CEF3 /* PBXTargetDependency */,
+			);
+			name = LordOfTheRingsTests;
+			productName = LordOfTheRingsTests;
+			productReference = A3042B2D29B3727E0081CEF3 /* LordOfTheRingsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A3042B3629B3727E0081CEF3 /* LordOfTheRingsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3042B4729B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "LordOfTheRingsUITests" */;
+			buildPhases = (
+				A3042B3329B3727E0081CEF3 /* Sources */,
+				A3042B3429B3727E0081CEF3 /* Frameworks */,
+				A3042B3529B3727E0081CEF3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A3042B3929B3727E0081CEF3 /* PBXTargetDependency */,
+			);
+			name = LordOfTheRingsUITests;
+			productName = LordOfTheRingsUITests;
+			productReference = A3042B3729B3727E0081CEF3 /* LordOfTheRingsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A3042B0F29B3727D0081CEF3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					A3042B1629B3727D0081CEF3 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					A3042B2C29B3727E0081CEF3 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = A3042B1629B3727D0081CEF3;
+					};
+					A3042B3629B3727E0081CEF3 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = A3042B1629B3727D0081CEF3;
+					};
+				};
+			};
+			buildConfigurationList = A3042B1229B3727D0081CEF3 /* Build configuration list for PBXProject "LordOfTheRings" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A3042B0E29B3727D0081CEF3;
+			productRefGroup = A3042B1829B3727D0081CEF3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A3042B1629B3727D0081CEF3 /* LordOfTheRings */,
+				A3042B2C29B3727E0081CEF3 /* LordOfTheRingsTests */,
+				A3042B3629B3727E0081CEF3 /* LordOfTheRingsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A3042B1529B3727D0081CEF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3042B2729B3727E0081CEF3 /* LaunchScreen.storyboard in Resources */,
+				A3042B2429B3727E0081CEF3 /* Assets.xcassets in Resources */,
+				A3042B2229B3727D0081CEF3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3042B2B29B3727E0081CEF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3042B3529B3727E0081CEF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A3042B1329B3727D0081CEF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3042B1F29B3727D0081CEF3 /* ViewController.swift in Sources */,
+				A3042B1B29B3727D0081CEF3 /* AppDelegate.swift in Sources */,
+				A3042B1D29B3727D0081CEF3 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3042B2929B3727E0081CEF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3042B3229B3727E0081CEF3 /* LordOfTheRingsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3042B3329B3727E0081CEF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3042B3E29B3727E0081CEF3 /* LordOfTheRingsUITestsLaunchTests.swift in Sources */,
+				A3042B3C29B3727E0081CEF3 /* LordOfTheRingsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A3042B2F29B3727E0081CEF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A3042B1629B3727D0081CEF3 /* LordOfTheRings */;
+			targetProxy = A3042B2E29B3727E0081CEF3 /* PBXContainerItemProxy */;
+		};
+		A3042B3929B3727E0081CEF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A3042B1629B3727D0081CEF3 /* LordOfTheRings */;
+			targetProxy = A3042B3829B3727E0081CEF3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A3042B2029B3727D0081CEF3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A3042B2129B3727D0081CEF3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A3042B2529B3727E0081CEF3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A3042B2629B3727E0081CEF3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A3042B3F29B3727E0081CEF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A3042B4029B3727E0081CEF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A3042B4229B3727E0081CEF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UN5MX5RT64;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LordOfTheRings/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Evgenii.Mikhailov.LordOfTheRings;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A3042B4329B3727E0081CEF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UN5MX5RT64;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LordOfTheRings/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Evgenii.Mikhailov.LordOfTheRings;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A3042B4529B3727E0081CEF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UN5MX5RT64;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Evgenii.Mikhailov.LordOfTheRingsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LordOfTheRings.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LordOfTheRings";
+			};
+			name = Debug;
+		};
+		A3042B4629B3727E0081CEF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UN5MX5RT64;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Evgenii.Mikhailov.LordOfTheRingsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LordOfTheRings.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LordOfTheRings";
+			};
+			name = Release;
+		};
+		A3042B4829B3727E0081CEF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UN5MX5RT64;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Evgenii.Mikhailov.LordOfTheRingsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LordOfTheRings;
+			};
+			name = Debug;
+		};
+		A3042B4929B3727E0081CEF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UN5MX5RT64;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Evgenii.Mikhailov.LordOfTheRingsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LordOfTheRings;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A3042B1229B3727D0081CEF3 /* Build configuration list for PBXProject "LordOfTheRings" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3042B3F29B3727E0081CEF3 /* Debug */,
+				A3042B4029B3727E0081CEF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3042B4129B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "LordOfTheRings" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3042B4229B3727E0081CEF3 /* Debug */,
+				A3042B4329B3727E0081CEF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3042B4429B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "LordOfTheRingsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3042B4529B3727E0081CEF3 /* Debug */,
+				A3042B4629B3727E0081CEF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3042B4729B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "LordOfTheRingsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3042B4829B3727E0081CEF3 /* Debug */,
+				A3042B4929B3727E0081CEF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A3042B0F29B3727D0081CEF3 /* Project object */;
+}
