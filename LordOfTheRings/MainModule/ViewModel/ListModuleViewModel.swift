@@ -15,11 +15,13 @@ protocol ListModuleViewModelProtocol: AnyObject {
     var characters: [Character] { get }
     func viewModelForSelectedItem() -> DetailsViewModelProtocol?
     func selectRow( indexPath: IndexPath)
+   // var appCoordinator: CoordinatorProtocol? { get set }
 }
 
 
 class ListModuleViewModel: ListModuleViewModelProtocol {
     
+    weak var appCoordinator: Coordinator?
     
     private var selectedIndexPath: IndexPath?
     var networkManager: NetworkServiceProtocol! = NetworkService() // Нужно DI
@@ -37,6 +39,10 @@ class ListModuleViewModel: ListModuleViewModelProtocol {
             completion()
         })
     }
+    
+//    func goToDetails(){
+//        appCoordinator!.gotoListPage()
+//       }
     
 //    func cellViewModel(indexPath: IndexPath) -> ListModuleCollectionViewCellViewModelProtocol? {
 //        //code

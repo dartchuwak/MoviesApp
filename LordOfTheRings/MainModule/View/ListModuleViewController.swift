@@ -10,13 +10,16 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 protocol ListModuleViewControllerProtocol: AnyObject {
+    var viewModel: ListModuleViewModelProtocol? { get set }
+   // var appCoordinator: CoordinatorProtocol? { get set }
 }
 
 
 
 class ListModuleViewController: UIViewController, ListModuleViewControllerProtocol {
     
-    var viewModel: ListModuleViewModelProtocol! // Хорошо бы использовать DI
+    var viewModel: ListModuleViewModelProtocol? // Хорошо бы использовать DI
+    //var appCoordinator: AppCoordinator?
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -38,7 +41,7 @@ class ListModuleViewController: UIViewController, ListModuleViewControllerProtoc
         collectionView.dataSource = self
         collectionView.delegate = self
         self.collectionView.register(ListModuleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        viewModel.fetchData { [weak self] in
+        viewModel!.fetchData { [weak self] in
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
             }
@@ -49,7 +52,7 @@ class ListModuleViewController: UIViewController, ListModuleViewControllerProtoc
 
 extension ListModuleViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.numberOfItemsInSection()
+        return viewModel!.numberOfItemsInSection()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
