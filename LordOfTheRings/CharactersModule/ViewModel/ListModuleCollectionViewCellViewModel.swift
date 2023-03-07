@@ -8,10 +8,10 @@
 import Foundation
 
 
-protocol ListModuleCollectionViewCellViewModelProtocol {
+protocol CharactersCellViewModelProtocol {
     
 }
 
-class ListModuleCollectionViewCellViewModel: ListModuleCollectionViewCellViewModelProtocol {
+class CharactersCellViewModel: CharactersCellViewModelProtocol {
     
 }

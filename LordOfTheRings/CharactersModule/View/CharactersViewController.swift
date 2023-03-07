@@ -10,13 +10,24 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 protocol ListModuleViewControllerProtocol: AnyObject {
+    var viewModel: CharacterViewModelProtocol { get set }
 }
 
 
 
-class ListModuleViewController: UIViewController, ListModuleViewControllerProtocol {
+class CharactersViewController: UIViewController, ListModuleViewControllerProtocol {
     
-    var viewModel: ListModuleViewModelProtocol! // Хорошо бы использовать DI
+    var viewModel: CharacterViewModelProtocol
+    
+    init(viewModel: CharacterViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+        setupBindables()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -31,14 +42,21 @@ class ListModuleViewController: UIViewController, ListModuleViewControllerProtoc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = ListModuleViewModel() // Хорошо бы использовать DI
         view.backgroundColor = .orange
         view.addSubview(collectionView)
-        collectionView.frame = view.bounds
         collectionView.dataSource = self
         collectionView.delegate = self
-        self.collectionView.register(ListModuleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        viewModel.fetchData { [weak self] in
+        self.collectionView.register(CharactersCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.viewModel.makeChars()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        collectionView.frame = view.frame
+    }
+    
+    private func setupBindables() {
+        viewModel.reload = { [weak self] in
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
             }
@@ -46,33 +64,30 @@ class ListModuleViewController: UIViewController, ListModuleViewControllerProtoc
     }
 }
 
-
-extension ListModuleViewController: UICollectionViewDataSource {
+extension CharactersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfItemsInSection()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ListModuleCollectionViewCell
-        guard let viewModel = viewModel else { return UICollectionViewCell()}
-        let character = viewModel.characters[indexPath.item]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CharactersCollectionViewCell
+        let characterName = characters[indexPath.row].name
         cell.backgroundColor = .red
-        cell.titleLabel.text = character.name
+        cell.titleLabel.text = characterName
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let viewModel = viewModel else { return }
         viewModel.selectRow(indexPath: indexPath)
-        let vc = DetailsViewController()
-        vc.viewModel = viewModel.viewModelForSelectedItem()
-        present(vc, animated: true)
+        guard let detailsViewModel = viewModel.viewModelForSelectedItem() else { return }
+        let vc = DetailsViewController(viewModel: detailsViewModel)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-extension ListModuleViewController: UICollectionViewDelegateFlowLayout {
+extension CharactersViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width - 20, height: 50)
+        return CGSize(width: view.bounds.width/2 - 16, height: 50)
     }
 }
