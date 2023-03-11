@@ -11,17 +11,18 @@ class DetailsViewController: UIViewController {
     
     private(set) var viewModel: DetailsViewModelProtocol
     
-    lazy var ActivityInocator: UIActivityIndicatorView = {
-        let aa = UIActivityIndicatorView()
-        aa.translatesAutoresizingMaskIntoConstraints = false
-        return aa
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
     }()
     
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Test"
-        label.font = .boldSystemFont(ofSize: 30)
+        label.numberOfLines = 2
+        label.font = .boldSystemFont(ofSize: 24)
+        label.textAlignment = .center
         return label
     }()
     
@@ -52,20 +53,18 @@ class DetailsViewController: UIViewController {
         return label
     }()
     
-    lazy var quoteLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Some text"
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.font = UIFont(name: "TimesNewRomanPS-ItalicMT", size: 24)
-        return label
+    lazy var quoteText: UITextView = {
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.textAlignment = .center
+        textView.font = UIFont(name: "TimesNewRomanPS-ItalicMT", size: 24)
+        textView.isEditable = false
+        return textView
     }()
     
     lazy var movieLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Some text"
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -85,8 +84,7 @@ class DetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideElements()
-        self.ActivityInocator.startAnimating()
-        self.nameLabel.text = self.viewModel.characterData?.name.uppercased()
+        self.activityIndicator.startAnimating()
     }
     
     override func viewDidLoad() {
@@ -96,16 +94,18 @@ class DetailsViewController: UIViewController {
     private func setupBindables() {
         viewModel.reload = { [weak self] in
             guard let self = self else { return }
+            guard let details = self.viewModel.characterDetails else { return }
             
             DispatchQueue.main.async {
                 guard let quote = self.viewModel.quote else { return }
-                self.quoteLabel.text = "\"\(quote.dialog!)\""
+                self.quoteText.text = "\"\(quote.dialog ?? "")\""
                 self.movieLabel.text = self.viewModel.movie
-                self.genderLabel.text = self.viewModel.characterDetails?.gender
-                self.raceLabel.text = self.viewModel.characterDetails?.race
+                self.genderLabel.text = details.gender
+                self.raceLabel.text = details.race
                 self.lifeLabel.text = self.viewModel.characterBirthDeath
+                self.nameLabel.text = details.name.uppercased()
                 self.showElements()
-                self.ActivityInocator.stopAnimating()
+                self.activityIndicator.stopAnimating()
             }
         }
     }
@@ -117,38 +117,33 @@ extension DetailsViewController {
         lifeLabel.isHidden = true
         raceLabel.isHidden = true
         genderLabel.isHidden = true
-        quoteLabel.isHidden = true
+        quoteText.isHidden = true
         movieLabel.isHidden = true
+        nameLabel.isHidden = true
     }
     
     private  func showElements() {
-        
         lifeLabel.isHidden = false
         raceLabel.isHidden = false
         genderLabel.isHidden = false
-        quoteLabel.isHidden = false
+        quoteText.isHidden = false
         movieLabel.isHidden = false
         lifeLabel.isHidden = false
         raceLabel.isHidden = false
         genderLabel.isHidden = false
-        quoteLabel.isHidden = false
+        quoteText.isHidden = false
         movieLabel.isHidden = false
+        nameLabel.isHidden = false
     }
     
     private func setUpView() {
         view.backgroundColor = .white
         view.addSubview(nameLabel)
-        view.addSubview(genderLabel)
-        view.addSubview(raceLabel)
         view.addSubview(lifeLabel)
         view.addSubview(deathLabel)
-        view.addSubview(ActivityInocator)
-        
-        let quoteStack = UIStackView(arrangedSubviews: [quoteLabel, movieLabel])
-        quoteStack.translatesAutoresizingMaskIntoConstraints = false
-        quoteStack.axis = .vertical
-        quoteStack.spacing = 30
-        view.addSubview(quoteStack)
+        view.addSubview(activityIndicator)
+        view.addSubview(quoteText)
+        view.addSubview(movieLabel)
         
         let raceStack = UIStackView(arrangedSubviews: [genderLabel, raceLabel])
         raceStack.translatesAutoresizingMaskIntoConstraints = false
@@ -156,19 +151,23 @@ extension DetailsViewController {
         view.addSubview(raceStack)
         
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
             lifeLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 30),
             lifeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             lifeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             raceStack.topAnchor.constraint(equalTo: lifeLabel.bottomAnchor, constant: 30),
             raceStack.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
-            quoteStack.topAnchor.constraint(equalTo: raceStack.bottomAnchor, constant: 50),
-            quoteStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            quoteStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            quoteStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            ActivityInocator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            ActivityInocator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            quoteText.topAnchor.constraint(equalTo: raceStack.bottomAnchor, constant: 50),
+            quoteText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
+            quoteText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            quoteText.heightAnchor.constraint(equalToConstant: 200),
+            movieLabel.topAnchor.constraint(equalTo: quoteText.bottomAnchor, constant: 24),
+            movieLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
     }
 }

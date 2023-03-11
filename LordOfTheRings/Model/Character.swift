@@ -25,7 +25,7 @@ struct CharacterDetails: Decodable {
     let death: String
     let realm: String
     let hair: String
-    let wikiUrl: String
+    let wikiUrl: String?
 }
 
 
