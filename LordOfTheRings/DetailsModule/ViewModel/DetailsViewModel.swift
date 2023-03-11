@@ -9,7 +9,6 @@ import Foundation
 
 
 protocol DetailsViewModelProtocol: AnyObject {
-    //var characterData: Character? { get set }
     var characterDetails: CharacterDetails? { get }
     var quote: Quote? { get }
     var movie: String { get }

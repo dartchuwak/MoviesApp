@@ -13,8 +13,6 @@ protocol ListModuleViewControllerProtocol: AnyObject {
     var viewModel: CharacterViewModelProtocol { get set }
 }
 
-
-
 class CharactersViewController: UIViewController, ListModuleViewControllerProtocol {
     
     var viewModel: CharacterViewModelProtocol
@@ -22,7 +20,6 @@ class CharactersViewController: UIViewController, ListModuleViewControllerProtoc
     init(viewModel: CharacterViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        setupBindables()
     }
     
     required init?(coder: NSCoder) {
@@ -54,14 +51,6 @@ class CharactersViewController: UIViewController, ListModuleViewControllerProtoc
         super.viewWillLayoutSubviews()
         collectionView.frame = view.frame
     }
-    
-    private func setupBindables() {
-        viewModel.reload = { [weak self] in
-            DispatchQueue.main.async {
-                self?.collectionView.reloadData()
-            }
-        }
-    }
 }
 
 extension CharactersViewController: UICollectionViewDataSource {
@@ -72,7 +61,7 @@ extension CharactersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CharactersCollectionViewCell
         let characterName = viewModel.characters[indexPath.row].name
-        cell.backgroundColor = .red
+        cell.backgroundColor = UIColor(white: 0.9, alpha: 1)
         cell.titleLabel.text = characterName
         return cell
     }

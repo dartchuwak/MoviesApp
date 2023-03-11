@@ -30,10 +30,7 @@ struct CharacterDetails: Decodable {
 
 
 struct CharacterDetailsResponce: Decodable {
-    let docs: [CharacterDetails]
-    //let name: String
-    //let race: String
-    
+    let docs: [CharacterDetails]    
 }
 
 let names = ["5cd99d4bde30eff6ebccfd06": "Galadriel",
