@@ -36,13 +36,13 @@ class CharactersViewController: UIViewController, ListModuleViewControllerProtoc
         layout.minimumInteritemSpacing = 10
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .cyan
+        collectionView.backgroundColor = .white
         return collectionView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .orange
+        view.backgroundColor = .white
         view.addSubview(collectionView)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -71,7 +71,7 @@ extension CharactersViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CharactersCollectionViewCell
-        let characterName = characters[indexPath.row].name
+        let characterName = viewModel.characters[indexPath.row].name
         cell.backgroundColor = .red
         cell.titleLabel.text = characterName
         return cell

@@ -9,8 +9,31 @@ import Foundation
 
 
 struct Character {
-let id: String
-let name: String
+    let id: String
+    let name: String
+}
+
+
+struct CharacterDetails: Decodable {
+    let _id: String
+    let name: String
+    let race: String
+    let height: String
+    let gender: String
+    let birth: String
+    let spouse: String
+    let death: String
+    let realm: String
+    let hair: String
+    let wikiUrl: String
+}
+
+
+struct CharacterDetailsResponce: Decodable {
+    let docs: [CharacterDetails]
+    //let name: String
+    //let race: String
+    
 }
 
 let names = ["5cd99d4bde30eff6ebccfd06": "Galadriel",
@@ -49,4 +72,4 @@ let names = ["5cd99d4bde30eff6ebccfd06": "Galadriel",
              "5cd9d5a0844dc4c55e47afef": "Mouth of Sauron",
              "5cd99d4bde30eff6ebccfd0d": "Samwise Gamgee"]
 
-var characters: [Character] = []
+

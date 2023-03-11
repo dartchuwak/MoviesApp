@@ -9,7 +9,7 @@ import Foundation
 
 
 protocol CharacterViewModelProtocol: AnyObject {
-    //var characters: [Character] { get }
+    var characters: [Character] { get set }
     var reload: (() -> ())? { get set }
     var quotes: [Quote] { get }
     func numberOfItemsInSection() -> Int
@@ -24,7 +24,7 @@ final class CharacterViewModel: CharacterViewModelProtocol {
     private var selectedIndexPath: IndexPath?
     private var isLoading = false
     var quotes: [Quote] = []
-   // var characters: [Character] = []
+    var characters: [Character] = []
     var reload: (() -> ())?
     
     

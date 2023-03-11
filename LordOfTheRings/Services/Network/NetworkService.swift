@@ -1,35 +1,76 @@
-//
-//  NetworkService.swift
-//  LordOfTheRings
-//
-//  Created by Evgenii Mikhailov on 04.03.2023.
-//
-
 import Foundation
 
 protocol NetworkServiceProtocol: AnyObject {
     func fetchCharacterQuotes(characterId: String, completion: @escaping (Result<[Quote]?, Error>) -> ())
+    func fetchCharacterDetails(characterId: String, completion: @escaping (Result<[CharacterDetails]?, Error>) -> ())
 }
 
 class NetworkService: NetworkServiceProtocol {
+    let session: URLSession
+    
+    init(session: URLSession = .shared) {
+        self.session = session
+    }
+    
     func fetchCharacterQuotes(characterId: String, completion: @escaping (Result<[Quote]?, Error>) -> ()) {
-        let urlString = "https://the-one-api.dev/v2/character/\(characterId)/quote"
-        guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string: "https://the-one-api.dev/v2/character/\(characterId)/quote") else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
+        
         var request = URLRequest(url: url)
         request.setValue("Bearer LAUsTEAZKPvH14vBQGch", forHTTPHeaderField: "Authorization")
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let data = data {
-                do {
-                    let data = try JSONDecoder().decode(QuotesResponce.self, from: data)
-                    let quotes  = data.docs
-                    completion(.success(quotes))
-                } catch {
-                    completion(.failure(error))
-                    print("Ошибка: \(error)")
-                }
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
             }
-        }.resume()
+            
+            guard let data = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            do {
+                let response = try JSONDecoder().decode(QuotesResponce.self, from: data)
+                completion(.success(response.docs ))
+            } catch {
+                completion(.failure(error))
+                print("Error: \(error)")
+            }
+        }
+        task.resume()
+    }
+    
+    func fetchCharacterDetails(characterId: String, completion: @escaping (Result<[CharacterDetails]?, Error>) -> ()) {
+        guard let url = URL(string: "https://the-one-api.dev/v2/character/\(characterId)") else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.setValue("Bearer LAUsTEAZKPvH14vBQGch", forHTTPHeaderField: "Authorization")
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            do {
+                let response = try JSONDecoder().decode(CharacterDetailsResponce.self, from: data)
+                completion(.success(response.docs))
+            } catch {
+                completion(.failure(error))
+                print("Error: \(error)")
+            }
+        }
+        task.resume()
     }
 }
-
-
