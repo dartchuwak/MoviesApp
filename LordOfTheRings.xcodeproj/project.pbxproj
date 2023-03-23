@@ -25,7 +25,6 @@
 		A3F50EFC29B606990044DC7F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F50EFB29B606990044DC7F /* SceneDelegate.swift */; };
 		A3F50EFF29B6117D0044DC7F /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F50EFE29B6117D0044DC7F /* AppDependency.swift */; };
 		A3F50F0129B61A960044DC7F /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F50F0029B61A960044DC7F /* Localize.swift */; };
-		A3F50F0329B65A8B0044DC7F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F50F0229B65A8B0044DC7F /* ViewController.swift */; };
 		A3F50F0529B662F90044DC7F /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F50F0429B662F90044DC7F /* Quote.swift */; };
 		A3F50F0829B66E520044DC7F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F50F0729B66E520044DC7F /* Enums.swift */; };
 /* End PBXBuildFile section */
@@ -70,7 +69,6 @@
 		A3F50EFB29B606990044DC7F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A3F50EFE29B6117D0044DC7F /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		A3F50F0029B61A960044DC7F /* Localize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
-		A3F50F0229B65A8B0044DC7F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A3F50F0429B662F90044DC7F /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		A3F50F0729B66E520044DC7F /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,7 +101,6 @@
 		A3042B0E29B3727D0081CEF3 = {
 			isa = PBXGroup;
 			children = (
-				A3F50F0229B65A8B0044DC7F /* ViewController.swift */,
 				A3042B1929B3727D0081CEF3 /* LordOfTheRings */,
 				A3042B3029B3727E0081CEF3 /* LordOfTheRingsTests */,
 				A3042B3A29B3727E0081CEF3 /* LordOfTheRingsUITests */,
@@ -397,7 +394,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3F50F0329B65A8B0044DC7F /* ViewController.swift in Sources */,
 				A3F50EFC29B606990044DC7F /* SceneDelegate.swift in Sources */,
 				A38C79C729B373140003C0EC /* CharactersViewController.swift in Sources */,
 				A3042B1B29B3727D0081CEF3 /* AppDelegate.swift in Sources */,
