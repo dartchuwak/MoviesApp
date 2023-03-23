@@ -25,15 +25,12 @@ struct CharacterDetails: Decodable {
     let death: String
     let realm: String
     let hair: String
-    let wikiUrl: String
+    let wikiUrl: String?
 }
 
 
 struct CharacterDetailsResponce: Decodable {
-    let docs: [CharacterDetails]
-    //let name: String
-    //let race: String
-    
+    let docs: [CharacterDetails]    
 }
 
 let names = ["5cd99d4bde30eff6ebccfd06": "Galadriel",

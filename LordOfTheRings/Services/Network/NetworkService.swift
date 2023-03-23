@@ -1,8 +1,8 @@
 import Foundation
 
 protocol NetworkServiceProtocol: AnyObject {
-    func fetchCharacterQuotes(characterId: String, completion: @escaping (Result<[Quote]?, Error>) -> ())
-    func fetchCharacterDetails(characterId: String, completion: @escaping (Result<[CharacterDetails]?, Error>) -> ())
+    func fetchCharacterQuotes(for characterId: String, completion: @escaping (Result<[Quote]?, Error>) -> ())
+    func fetchCharacterDetails(for characterId: String, completion: @escaping (Result<[CharacterDetails]?, Error>) -> ())
 }
 
 class NetworkService: NetworkServiceProtocol {
@@ -12,7 +12,7 @@ class NetworkService: NetworkServiceProtocol {
         self.session = session
     }
     
-    func fetchCharacterQuotes(characterId: String, completion: @escaping (Result<[Quote]?, Error>) -> ()) {
+    func fetchCharacterQuotes(for characterId: String, completion: @escaping (Result<[Quote]?, Error>) -> ()) {
         guard let url = URL(string: "https://the-one-api.dev/v2/character/\(characterId)/quote") else {
             completion(.failure(NetworkError.invalidURL))
             return
@@ -43,7 +43,7 @@ class NetworkService: NetworkServiceProtocol {
         task.resume()
     }
     
-    func fetchCharacterDetails(characterId: String, completion: @escaping (Result<[CharacterDetails]?, Error>) -> ()) {
+    func fetchCharacterDetails(for characterId: String, completion: @escaping (Result<[CharacterDetails]?, Error>) -> ()) {
         guard let url = URL(string: "https://the-one-api.dev/v2/character/\(characterId)") else {
             completion(.failure(NetworkError.invalidURL))
             return

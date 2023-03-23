@@ -11,7 +11,7 @@ import Foundation
 struct Quote: Decodable {
     let _id: String?
     let dialog: String?
-    let movie:String?
+    let movie:String
     let character:String?
     let id:String?
 }
