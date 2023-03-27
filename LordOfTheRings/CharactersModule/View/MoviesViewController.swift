@@ -6,25 +6,34 @@
 //
 
 import UIKit
+import SDWebImage
 
 private let reuseIdentifier = "Cell"
 
 protocol ListModuleViewControllerProtocol: AnyObject {
-    var viewModel: CharacterViewModelProtocol { get set }
+    var viewModel: MoviesViewModelProtocol { get set }
 }
 
-class CharactersViewController: UIViewController, ListModuleViewControllerProtocol {
+class MoviesViewController: UIViewController, ListModuleViewControllerProtocol {
     
-    var viewModel: CharacterViewModelProtocol
+    var viewModel: MoviesViewModelProtocol
     
-    init(viewModel: CharacterViewModelProtocol) {
+    init(viewModel: MoviesViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        setupBindables()
+        viewModel.fetchMovies()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    let searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        return searchBar
+    }()
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -44,7 +53,6 @@ class CharactersViewController: UIViewController, ListModuleViewControllerProtoc
         collectionView.dataSource = self
         collectionView.delegate = self
         self.collectionView.register(CharactersCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        self.viewModel.makeChars()
     }
     
     override func viewWillLayoutSubviews() {
@@ -53,16 +61,15 @@ class CharactersViewController: UIViewController, ListModuleViewControllerProtoc
     }
 }
 
-extension CharactersViewController: UICollectionViewDataSource {
+extension MoviesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfItemsInSection()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CharactersCollectionViewCell
-        let characterName = viewModel.characters[indexPath.row].name
-        cell.backgroundColor = UIColor(white: 0.9, alpha: 1)
-        cell.titleLabel.text = characterName
+        let movie = viewModel.movies[indexPath.row]
+        cell.posterImage.sd_setImage(with: URL(string:movie.poster.previewUrl))
         return cell
     }
     
@@ -72,11 +79,20 @@ extension CharactersViewController: UICollectionViewDataSource {
         let vc = DetailsViewController(viewModel: detailsViewModel)
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+        private func setupBindables() {
+            viewModel.reload = { [weak self] in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+        }
 }
 
-extension CharactersViewController: UICollectionViewDelegateFlowLayout {
+extension MoviesViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width - 30, height: 50)
+        return CGSize(width: 180, height: 300)
     }
 }

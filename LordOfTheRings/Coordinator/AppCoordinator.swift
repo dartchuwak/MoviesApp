@@ -19,7 +19,7 @@ class AppCoordinator: CoordinatorProtocol {
     private let appDependency: AppDependency
     
     lazy var rootViewController: UIViewController = {
-        let characterVC = CharactersViewController(viewModel: appDependency.charactersViewModel)
+        let characterVC = MoviesViewController(viewModel: appDependency.charactersViewModel)
         characterVC.navigationItem.title = Localize.characters
         characterVC.tabBarController?.tabBar.tintColor = .brown
         let characterNavController = UINavigationController(rootViewController: characterVC)

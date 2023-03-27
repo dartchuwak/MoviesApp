@@ -1,8 +1,8 @@
 import Foundation
 
 protocol NetworkServiceProtocol: AnyObject {
-    func fetchCharacterQuotes(for characterId: String, completion: @escaping (Result<[Quote]?, Error>) -> ())
-    func fetchCharacterDetails(for characterId: String, completion: @escaping (Result<[CharacterDetails]?, Error>) -> ())
+    func fetchMovies(completion: @escaping (Result<[Movie], Error>) -> ())
+    func fetchMovies(with id: String, completion: @escaping (Result<Movie, Error>) -> ())
 }
 
 class NetworkService: NetworkServiceProtocol {
@@ -12,14 +12,14 @@ class NetworkService: NetworkServiceProtocol {
         self.session = session
     }
     
-    func fetchCharacterQuotes(for characterId: String, completion: @escaping (Result<[Quote]?, Error>) -> ()) {
-        guard let url = URL(string: "https://the-one-api.dev/v2/character/\(characterId)/quote") else {
+    func fetchMovies(completion: @escaping (Result<[Movie], Error>) -> ()) {
+        guard let url = URL(string: "https://api.kinopoisk.dev/v1/movie") else {
             completion(.failure(NetworkError.invalidURL))
             return
         }
         
         var request = URLRequest(url: url)
-        request.setValue("Bearer LAUsTEAZKPvH14vBQGch", forHTTPHeaderField: "Authorization")
+        request.setValue("TMSVW3E-05TMGH9-MMW9SWN-20GAGBY", forHTTPHeaderField: "x-api-key")
         
         let task = session.dataTask(with: request) { (data, response, error) in
             if let error = error {
@@ -33,7 +33,7 @@ class NetworkService: NetworkServiceProtocol {
             }
             
             do {
-                let response = try JSONDecoder().decode(QuotesResponce.self, from: data)
+                let response = try JSONDecoder().decode(MoviesResponse.self, from: data)
                 completion(.success(response.docs ))
             } catch {
                 completion(.failure(error))
@@ -43,14 +43,14 @@ class NetworkService: NetworkServiceProtocol {
         task.resume()
     }
     
-    func fetchCharacterDetails(for characterId: String, completion: @escaping (Result<[CharacterDetails]?, Error>) -> ()) {
-        guard let url = URL(string: "https://the-one-api.dev/v2/character/\(characterId)") else {
+    func fetchMovies(with id: String, completion: @escaping (Result<Movie, Error>) -> ()) {
+        guard let url = URL(string: "https://api.kinopoisk.dev/v1/movie/\(id)") else {
             completion(.failure(NetworkError.invalidURL))
             return
         }
         
         var request = URLRequest(url: url)
-        request.setValue("Bearer LAUsTEAZKPvH14vBQGch", forHTTPHeaderField: "Authorization")
+        request.setValue("TMSVW3E-05TMGH9-MMW9SWN-20GAGBY", forHTTPHeaderField: "x-api-key")
         
         let task = session.dataTask(with: request) { (data, response, error) in
             if let error = error {
@@ -64,8 +64,8 @@ class NetworkService: NetworkServiceProtocol {
             }
             
             do {
-                let response = try JSONDecoder().decode(CharacterDetailsResponce.self, from: data)
-                completion(.success(response.docs))
+                let response = try JSONDecoder().decode(Movie.self, from: data)
+                completion(.success(response))
             } catch {
                 completion(.failure(error))
                 print("Error: \(error)")
@@ -73,4 +73,6 @@ class NetworkService: NetworkServiceProtocol {
         }
         task.resume()
     }
+    
+    
 }
