@@ -1,4 +1,4 @@
-# Lord Of The Rings
+# Movies App
 ### Screens: ###
 
 <div>
