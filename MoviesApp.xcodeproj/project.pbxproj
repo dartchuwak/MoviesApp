@@ -10,9 +10,6 @@
 		A3042B1B29B3727D0081CEF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3042B1A29B3727D0081CEF3 /* AppDelegate.swift */; };
 		A3042B2429B3727E0081CEF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3042B2329B3727E0081CEF3 /* Assets.xcassets */; };
 		A3042B2729B3727E0081CEF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3042B2529B3727E0081CEF3 /* LaunchScreen.storyboard */; };
-		A3042B3229B3727E0081CEF3 /* LordOfTheRingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3042B3129B3727E0081CEF3 /* LordOfTheRingsTests.swift */; };
-		A3042B3C29B3727E0081CEF3 /* LordOfTheRingsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3042B3B29B3727E0081CEF3 /* LordOfTheRingsUITests.swift */; };
-		A3042B3E29B3727E0081CEF3 /* LordOfTheRingsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3042B3D29B3727E0081CEF3 /* LordOfTheRingsUITestsLaunchTests.swift */; };
 		A34DA8AB29D1C79400013ED5 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A34DA8AA29D1C79400013ED5 /* SDWebImage */; };
 		A354A43629B37CAC0061C2D8 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354A43529B37CAC0061C2D8 /* MovieCollectionViewCell.swift */; };
 		A354A43B29B387520061C2D8 /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354A43A29B387520061C2D8 /* MoviesViewModel.swift */; };
@@ -47,16 +44,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A3042B1729B3727D0081CEF3 /* LordOfTheRings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LordOfTheRings.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3042B1729B3727D0081CEF3 /* MoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3042B1A29B3727D0081CEF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3042B2329B3727E0081CEF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3042B2629B3727E0081CEF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A3042B2829B3727E0081CEF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A3042B2D29B3727E0081CEF3 /* LordOfTheRingsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LordOfTheRingsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3042B3129B3727E0081CEF3 /* LordOfTheRingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LordOfTheRingsTests.swift; sourceTree = "<group>"; };
-		A3042B3729B3727E0081CEF3 /* LordOfTheRingsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LordOfTheRingsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3042B3B29B3727E0081CEF3 /* LordOfTheRingsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LordOfTheRingsUITests.swift; sourceTree = "<group>"; };
-		A3042B3D29B3727E0081CEF3 /* LordOfTheRingsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LordOfTheRingsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A3042B2D29B3727E0081CEF3 /* MoviesAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3042B3729B3727E0081CEF3 /* MoviesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A354A43529B37CAC0061C2D8 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		A354A43A29B387520061C2D8 /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		A38C79C629B373140003C0EC /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
@@ -101,9 +95,7 @@
 		A3042B0E29B3727D0081CEF3 = {
 			isa = PBXGroup;
 			children = (
-				A3042B1929B3727D0081CEF3 /* LordOfTheRings */,
-				A3042B3029B3727E0081CEF3 /* LordOfTheRingsTests */,
-				A3042B3A29B3727E0081CEF3 /* LordOfTheRingsUITests */,
+				A3042B1929B3727D0081CEF3 /* MoviesApp */,
 				A3042B1829B3727D0081CEF3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -111,14 +103,14 @@
 		A3042B1829B3727D0081CEF3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A3042B1729B3727D0081CEF3 /* LordOfTheRings.app */,
-				A3042B2D29B3727E0081CEF3 /* LordOfTheRingsTests.xctest */,
-				A3042B3729B3727E0081CEF3 /* LordOfTheRingsUITests.xctest */,
+				A3042B1729B3727D0081CEF3 /* MoviesApp.app */,
+				A3042B2D29B3727E0081CEF3 /* MoviesAppTests.xctest */,
+				A3042B3729B3727E0081CEF3 /* MoviesAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A3042B1929B3727D0081CEF3 /* LordOfTheRings */ = {
+		A3042B1929B3727D0081CEF3 /* MoviesApp */ = {
 			isa = PBXGroup;
 			children = (
 				A3F50F0629B66E3E0044DC7F /* Helpers */,
@@ -126,40 +118,23 @@
 				A3F50EF429B520FA0044DC7F /* Coordinator */,
 				A38C79CE29B3742A0003C0EC /* Services */,
 				A38C79CB29B373500003C0EC /* Model */,
-				A38C79C829B373350003C0EC /* CharactersModule */,
+				A38C79C829B373350003C0EC /* MoviesModule */,
 				A3F50EED29B3CC0C0044DC7F /* DetailsModule */,
 				A3042B2329B3727E0081CEF3 /* Assets.xcassets */,
 				A3042B2529B3727E0081CEF3 /* LaunchScreen.storyboard */,
 				A3042B2829B3727E0081CEF3 /* Info.plist */,
 				A3F50F0029B61A960044DC7F /* Localize.swift */,
 			);
-			path = LordOfTheRings;
+			path = MoviesApp;
 			sourceTree = "<group>";
 		};
-		A3042B3029B3727E0081CEF3 /* LordOfTheRingsTests */ = {
-			isa = PBXGroup;
-			children = (
-				A3042B3129B3727E0081CEF3 /* LordOfTheRingsTests.swift */,
-			);
-			path = LordOfTheRingsTests;
-			sourceTree = "<group>";
-		};
-		A3042B3A29B3727E0081CEF3 /* LordOfTheRingsUITests */ = {
-			isa = PBXGroup;
-			children = (
-				A3042B3B29B3727E0081CEF3 /* LordOfTheRingsUITests.swift */,
-				A3042B3D29B3727E0081CEF3 /* LordOfTheRingsUITestsLaunchTests.swift */,
-			);
-			path = LordOfTheRingsUITests;
-			sourceTree = "<group>";
-		};
-		A38C79C829B373350003C0EC /* CharactersModule */ = {
+		A38C79C829B373350003C0EC /* MoviesModule */ = {
 			isa = PBXGroup;
 			children = (
 				A38C79CA29B373470003C0EC /* ViewModel */,
 				A38C79C929B373400003C0EC /* View */,
 			);
-			path = CharactersModule;
+			path = MoviesModule;
 			sourceTree = "<group>";
 		};
 		A38C79C929B373400003C0EC /* View */ = {
@@ -258,9 +233,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A3042B1629B3727D0081CEF3 /* LordOfTheRings */ = {
+		A3042B1629B3727D0081CEF3 /* MoviesApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A3042B4129B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "LordOfTheRings" */;
+			buildConfigurationList = A3042B4129B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "MoviesApp" */;
 			buildPhases = (
 				A3042B1329B3727D0081CEF3 /* Sources */,
 				A3042B1429B3727D0081CEF3 /* Frameworks */,
@@ -270,17 +245,17 @@
 			);
 			dependencies = (
 			);
-			name = LordOfTheRings;
+			name = MoviesApp;
 			packageProductDependencies = (
 				A34DA8AA29D1C79400013ED5 /* SDWebImage */,
 			);
 			productName = LordOfTheRings;
-			productReference = A3042B1729B3727D0081CEF3 /* LordOfTheRings.app */;
+			productReference = A3042B1729B3727D0081CEF3 /* MoviesApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A3042B2C29B3727E0081CEF3 /* LordOfTheRingsTests */ = {
+		A3042B2C29B3727E0081CEF3 /* MoviesAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A3042B4429B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "LordOfTheRingsTests" */;
+			buildConfigurationList = A3042B4429B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "MoviesAppTests" */;
 			buildPhases = (
 				A3042B2929B3727E0081CEF3 /* Sources */,
 				A3042B2A29B3727E0081CEF3 /* Frameworks */,
@@ -291,14 +266,14 @@
 			dependencies = (
 				A3042B2F29B3727E0081CEF3 /* PBXTargetDependency */,
 			);
-			name = LordOfTheRingsTests;
+			name = MoviesAppTests;
 			productName = LordOfTheRingsTests;
-			productReference = A3042B2D29B3727E0081CEF3 /* LordOfTheRingsTests.xctest */;
+			productReference = A3042B2D29B3727E0081CEF3 /* MoviesAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		A3042B3629B3727E0081CEF3 /* LordOfTheRingsUITests */ = {
+		A3042B3629B3727E0081CEF3 /* MoviesAppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A3042B4729B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "LordOfTheRingsUITests" */;
+			buildConfigurationList = A3042B4729B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "MoviesAppUITests" */;
 			buildPhases = (
 				A3042B3329B3727E0081CEF3 /* Sources */,
 				A3042B3429B3727E0081CEF3 /* Frameworks */,
@@ -309,9 +284,9 @@
 			dependencies = (
 				A3042B3929B3727E0081CEF3 /* PBXTargetDependency */,
 			);
-			name = LordOfTheRingsUITests;
+			name = MoviesAppUITests;
 			productName = LordOfTheRingsUITests;
-			productReference = A3042B3729B3727E0081CEF3 /* LordOfTheRingsUITests.xctest */;
+			productReference = A3042B3729B3727E0081CEF3 /* MoviesAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -337,7 +312,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A3042B1229B3727D0081CEF3 /* Build configuration list for PBXProject "LordOfTheRings" */;
+			buildConfigurationList = A3042B1229B3727D0081CEF3 /* Build configuration list for PBXProject "MoviesApp" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -353,9 +328,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A3042B1629B3727D0081CEF3 /* LordOfTheRings */,
-				A3042B2C29B3727E0081CEF3 /* LordOfTheRingsTests */,
-				A3042B3629B3727E0081CEF3 /* LordOfTheRingsUITests */,
+				A3042B1629B3727D0081CEF3 /* MoviesApp */,
+				A3042B2C29B3727E0081CEF3 /* MoviesAppTests */,
+				A3042B3629B3727E0081CEF3 /* MoviesAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -412,7 +387,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3042B3229B3727E0081CEF3 /* LordOfTheRingsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,8 +394,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3042B3E29B3727E0081CEF3 /* LordOfTheRingsUITestsLaunchTests.swift in Sources */,
-				A3042B3C29B3727E0081CEF3 /* LordOfTheRingsUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,12 +402,12 @@
 /* Begin PBXTargetDependency section */
 		A3042B2F29B3727E0081CEF3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A3042B1629B3727D0081CEF3 /* LordOfTheRings */;
+			target = A3042B1629B3727D0081CEF3 /* MoviesApp */;
 			targetProxy = A3042B2E29B3727E0081CEF3 /* PBXContainerItemProxy */;
 		};
 		A3042B3929B3727E0081CEF3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A3042B1629B3727D0081CEF3 /* LordOfTheRings */;
+			target = A3042B1629B3727D0081CEF3 /* MoviesApp */;
 			targetProxy = A3042B3829B3727E0081CEF3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -575,7 +547,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UN5MX5RT64;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = LordOfTheRings/Info.plist;
+				INFOPLIST_FILE = MoviesApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -606,7 +578,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UN5MX5RT64;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = LordOfTheRings/Info.plist;
+				INFOPLIST_FILE = MoviesApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -644,7 +616,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LordOfTheRings.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LordOfTheRings";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoviesApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoviesApp";
 			};
 			name = Debug;
 		};
@@ -664,7 +636,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LordOfTheRings.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LordOfTheRings";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoviesApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoviesApp";
 			};
 			name = Release;
 		};
@@ -707,7 +679,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A3042B1229B3727D0081CEF3 /* Build configuration list for PBXProject "LordOfTheRings" */ = {
+		A3042B1229B3727D0081CEF3 /* Build configuration list for PBXProject "MoviesApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A3042B3F29B3727E0081CEF3 /* Debug */,
@@ -716,7 +688,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A3042B4129B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "LordOfTheRings" */ = {
+		A3042B4129B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "MoviesApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A3042B4229B3727E0081CEF3 /* Debug */,
@@ -725,7 +697,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A3042B4429B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "LordOfTheRingsTests" */ = {
+		A3042B4429B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "MoviesAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A3042B4529B3727E0081CEF3 /* Debug */,
@@ -734,7 +706,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A3042B4729B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "LordOfTheRingsUITests" */ = {
+		A3042B4729B3727E0081CEF3 /* Build configuration list for PBXNativeTarget "MoviesAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A3042B4829B3727E0081CEF3 /* Debug */,

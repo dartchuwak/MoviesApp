@@ -6,5 +6,5 @@
 //
 
 enum Localize {
-    static let characters = "Персонажи"
+    static let characters = "Фильмы"
 }

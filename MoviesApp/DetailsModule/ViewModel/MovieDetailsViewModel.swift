@@ -12,32 +12,31 @@ protocol DetailsViewModelProtocol: AnyObject {
     var movieDetails: Movie? { get }
     var reload: (() -> ())? { get set }
     var networkService: NetworkServiceProtocol { get }
-    var id: Int { get set }
-    func fetchData(with id: Int)
+    var id: String { get set }
+    func fetchData(with id: String)
 }
 
 class DetailsViewModel: DetailsViewModelProtocol {
-    var id: Int
+    var id: String
     var movieDetails: Movie?
     var reload: (() -> ())?
     var isLoading: Bool = false
     var networkService: NetworkServiceProtocol
     let dispatchGroup = DispatchGroup()
     
-    init (id:Int, networkService: NetworkServiceProtocol) {
+    init (id: String , networkService: NetworkServiceProtocol) {
         self.id = id
         self.networkService = networkService
     }
     
-    func fetchData(with id: Int)  {
+    func fetchData(with id: String)  {
         guard !isLoading else { return }
         isLoading = true
-        networkService.fetchMovies(with: String(id), completion: { [weak self] result in
+        networkService.fetchMovies(with: id, completion: { [weak self] result in
             guard let self = self  else { return }
             switch result {
             case .success(let movie):
-            
-            self.movieDetails = movie
+                self.movieDetails = movie
                 self.reload?()
             case .failure(let error):
                 print (error)

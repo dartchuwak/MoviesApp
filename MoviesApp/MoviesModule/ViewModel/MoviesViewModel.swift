@@ -33,7 +33,7 @@ final class MoviesViewModel: MoviesViewModelProtocol {
     func fetchMovies() {
         guard !isLoading else { return }
         isLoading = true
-        networkService.fetchMovies(completion: { [weak self] result in
+        networkService.fetchTop250Movies(completion: { [weak self] result in
             guard let self = self  else { return }
             switch result {
             case .success(let movies):

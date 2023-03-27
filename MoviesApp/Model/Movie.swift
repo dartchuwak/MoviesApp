@@ -9,17 +9,21 @@ import Foundation
 
 
 struct Movie: Decodable {
-    let id: Int
-    let name: String
-    let poster : Poster
+    let id: String
+    let title: String
+    let image: String
 }
 
 struct Poster: Decodable {
     let url: String
     let previewUrl: String
 }
+
+struct Trailer: Decodable {
+    
+}
 struct MoviesResponse: Decodable {
-    let docs: [Movie]
+    let items: [Movie]
 }
 
 

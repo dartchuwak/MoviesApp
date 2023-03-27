@@ -1,7 +1,7 @@
 import Foundation
 
 protocol NetworkServiceProtocol: AnyObject {
-    func fetchMovies(completion: @escaping (Result<[Movie], Error>) -> ())
+    func fetchTop250Movies(completion: @escaping (Result<[Movie], Error>) -> ())
     func fetchMovies(with id: String, completion: @escaping (Result<Movie, Error>) -> ())
 }
 
@@ -12,14 +12,13 @@ class NetworkService: NetworkServiceProtocol {
         self.session = session
     }
     
-    func fetchMovies(completion: @escaping (Result<[Movie], Error>) -> ()) {
-        guard let url = URL(string: "https://api.kinopoisk.dev/v1/movie") else {
+    func fetchTop250Movies(completion: @escaping (Result<[Movie], Error>) -> ()) {
+        guard let url = URL(string: "https://imdb-api.com/en/API/Top250Movies/k_wzzjkk0r") else {
             completion(.failure(NetworkError.invalidURL))
             return
         }
         
-        var request = URLRequest(url: url)
-        request.setValue("TMSVW3E-05TMGH9-MMW9SWN-20GAGBY", forHTTPHeaderField: "x-api-key")
+        let request = URLRequest(url: url)
         
         let task = session.dataTask(with: request) { (data, response, error) in
             if let error = error {
@@ -34,7 +33,7 @@ class NetworkService: NetworkServiceProtocol {
             
             do {
                 let response = try JSONDecoder().decode(MoviesResponse.self, from: data)
-                completion(.success(response.docs ))
+                completion(.success(response.items))
             } catch {
                 completion(.failure(error))
                 print("Error: \(error)")
@@ -44,13 +43,12 @@ class NetworkService: NetworkServiceProtocol {
     }
     
     func fetchMovies(with id: String, completion: @escaping (Result<Movie, Error>) -> ()) {
-        guard let url = URL(string: "https://api.kinopoisk.dev/v1/movie/\(id)") else {
+        guard let url = URL(string: "https://imdb-api.com/en/API/Title/k_wzzjkk0r/\(id)") else {
             completion(.failure(NetworkError.invalidURL))
             return
         }
         
-        var request = URLRequest(url: url)
-        request.setValue("TMSVW3E-05TMGH9-MMW9SWN-20GAGBY", forHTTPHeaderField: "x-api-key")
+        let request = URLRequest(url: url)
         
         let task = session.dataTask(with: request) { (data, response, error) in
             if let error = error {

@@ -49,7 +49,9 @@ class MoviesViewController: UIViewController, ListModuleViewControllerProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        view.addSubview(searchBar)
         view.addSubview(collectionView)
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         self.collectionView.register(CharactersCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -57,7 +59,16 @@ class MoviesViewController: UIViewController, ListModuleViewControllerProtocol {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        collectionView.frame = view.frame
+        
+        NSLayoutConstraint.activate([
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
+            searchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -12),
+            collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 12),
+            collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
     }
 }
 
@@ -69,7 +80,7 @@ extension MoviesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CharactersCollectionViewCell
         let movie = viewModel.movies[indexPath.row]
-        cell.posterImage.sd_setImage(with: URL(string:movie.poster.previewUrl))
+        cell.posterImage.sd_setImage(with: URL(string:movie.image))
         return cell
     }
     
