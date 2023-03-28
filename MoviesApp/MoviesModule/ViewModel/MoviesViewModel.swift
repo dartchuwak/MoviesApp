@@ -16,8 +16,9 @@ protocol MoviesViewModelProtocol: AnyObject {
     func viewModelForSelectedItem() -> DetailsViewModelProtocol?
     func selectRow(indexPath: IndexPath)
     func fetchMovies()
+    func searchMovies(with text: String)
+    func loadLocalMovies()
 }
-
 
 final class MoviesViewModel: MoviesViewModelProtocol {
     var networkService: NetworkServiceProtocol = NetworkService()
@@ -33,19 +34,50 @@ final class MoviesViewModel: MoviesViewModelProtocol {
     func fetchMovies() {
         guard !isLoading else { return }
         isLoading = true
-        networkService.fetchTop250Movies(completion: { [weak self] result in
+        networkService.fetchMovies(completion: { [weak self] result in
             guard let self = self  else { return }
             switch result {
             case .success(let movies):
                 self.movies = movies
+                self.isLoading = false
                 self.reload?()
-                print(movies)
             case .failure(let error):
                 print (error)
             }
         })
     }
     
+    func loadLocalMovies() {
+        guard !isLoading else { return }
+        isLoading = true
+        networkService.loadLocalMovies(completion: { [weak self] result in
+            guard let self = self  else { return }
+            switch result {
+            case .success(let movies):
+                self.movies = movies
+                self.isLoading = false
+                self.reload?()
+            case .failure(let error):
+                print (error)
+            }
+        })
+    }
+    
+    func searchMovies(with text: String ) {
+        guard !isLoading else { return }
+        isLoading = true
+        networkService.searchMovies(with: text) { [weak self] result in
+            guard let self = self  else { return }
+            switch result {
+            case .success(let movies):
+                self.movies = movies
+                self.isLoading = false
+                self.reload?()
+            case .failure(let error):
+                print (error)
+            }
+        }
+    }
     
     func viewModelForSelectedItem() -> DetailsViewModelProtocol? {
         guard let indexPath = selectedIndexPath else { return nil}
