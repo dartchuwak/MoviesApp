@@ -9,9 +9,10 @@ import Foundation
 
 
 protocol DetailsViewModelProtocol: AnyObject {
-    var movieDetails: Movie? { get }
+    var movie: Movie? { get }
     var reload: (() -> ())? { get set }
     var networkService: NetworkServiceProtocol { get }
+    var reloadScreens: (() -> ())? { get set }
     var id: Int { get set }
     func fetchMovieDeatails(with id: Int)
     func loadLocalMovieDeatails()
@@ -19,11 +20,13 @@ protocol DetailsViewModelProtocol: AnyObject {
 
 class DetailsViewModel: DetailsViewModelProtocol {
     var id: Int
-    var movieDetails: Movie?
+    var movie: Movie?
+    var screenshots: [Screenshot] = []
     var reload: (() -> ())?
+    var reloadScreens: (() -> ())? 
     var isLoading: Bool = false
     var networkService: NetworkServiceProtocol
-    let dispatchGroup = DispatchGroup()
+    
     
     init (id: Int , networkService: NetworkServiceProtocol) {
         self.id = id
@@ -37,7 +40,7 @@ class DetailsViewModel: DetailsViewModelProtocol {
             guard let self = self  else { return }
             switch result {
             case .success(let movie):
-                self.movieDetails = movie
+                self.movie = movie
                 self.reload?()
             case .failure(let error):
                 print (error)
@@ -52,13 +55,14 @@ class DetailsViewModel: DetailsViewModelProtocol {
             guard let self = self  else { return }
             switch result {
             case .success(let movie):
-                self.movieDetails = movie
+                self.movie = movie
                 self.reload?()
+                self.isLoading = false
             case .failure(let error):
                 print (error)
             }
         }
     }
-    
+
 }
 

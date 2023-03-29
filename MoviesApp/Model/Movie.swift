@@ -19,9 +19,9 @@ struct Movie: Decodable {
     let year: Int
     let countries: [Countries]
     let genres: [Genres]
-    let shortDescription: String
-    let description: String
-    let videos : Video?
+    let shortDescription: String?
+    let description: String?
+    let isFavorite: Bool?
 }
 
 struct Poster: Decodable {
@@ -59,6 +59,14 @@ struct Trailer: Decodable {
 
 struct Teaser: Decodable {
     
+}
+
+struct ScreenshotResponse: Decodable {
+    let docs: [Screenshot]
+}
+
+struct Screenshot: Decodable {
+    let previewUrl: String
 }
 
 struct MoviesResponse: Decodable {

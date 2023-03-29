@@ -12,6 +12,7 @@ protocol MoviesViewModelProtocol: AnyObject {
     var movies: [Movie] { get set }
     var reload: (() -> ())? { get set }
     var networkService: NetworkServiceProtocol { get set }
+    var movieRating: String? { get set }
     func numberOfItemsInSection() -> Int
     func viewModelForSelectedItem() -> DetailsViewModelProtocol?
     func selectRow(indexPath: IndexPath)
@@ -26,6 +27,7 @@ final class MoviesViewModel: MoviesViewModelProtocol {
     private var isLoading = false
     var movies: [Movie] = []
     var reload: (() -> ())?
+    var movieRating: String?
     
     func numberOfItemsInSection() -> Int {
         return movies.count
@@ -80,7 +82,7 @@ final class MoviesViewModel: MoviesViewModelProtocol {
     }
     
     func viewModelForSelectedItem() -> DetailsViewModelProtocol? {
-        guard let indexPath = selectedIndexPath else { return nil}
+        guard let indexPath = selectedIndexPath else { return nil }
         return DetailsViewModel(id: movies[indexPath.row].id,  networkService: NetworkService())
     }
 

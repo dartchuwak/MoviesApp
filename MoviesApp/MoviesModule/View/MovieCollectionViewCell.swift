@@ -9,7 +9,6 @@ import UIKit
 
 class CharactersCollectionViewCell: UICollectionViewCell {
     
-  
     
     let posterImage: UIImageView = {
         let image = UIImageView()
@@ -24,6 +23,7 @@ class CharactersCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 14, weight: .bold)
         label.text = "Harry Potter"
+        label.numberOfLines = 3
         return label
     }()
     
@@ -32,7 +32,7 @@ class CharactersCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.text = "Harry Potter"
-        label.numberOfLines = 1
+        label.numberOfLines = 3
         return label
     }()
     
@@ -49,7 +49,7 @@ class CharactersCollectionViewCell: UICollectionViewCell {
     let ratingLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .green
+        label.textColor = .orange
         label.text = "8.5"
         label.font = .systemFont(ofSize: 14, weight: .bold)
         return label
@@ -70,15 +70,15 @@ class CharactersCollectionViewCell: UICollectionViewCell {
             posterImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
             nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
             nameLabel.leadingAnchor.constraint(equalTo: posterImage.trailingAnchor, constant: 16),
-            engNameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 12),
+            engNameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
             engNameLabel.leadingAnchor.constraint(equalTo: posterImage.trailingAnchor, constant: 16),
-            detailsLabel.topAnchor.constraint(equalTo: engNameLabel.bottomAnchor, constant: 12),
-            detailsLabel.leadingAnchor.constraint(equalTo: posterImage.trailingAnchor, constant: 16 ),
+            engNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            detailsLabel.topAnchor.constraint(equalTo: engNameLabel.bottomAnchor, constant: 8),
+            detailsLabel.leadingAnchor.constraint(equalTo: posterImage.trailingAnchor, constant: 14 ),
             detailsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             ratingLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
             ratingLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            
+            nameLabel.widthAnchor.constraint(equalToConstant: 170)
         ])
         
         backgroundColor = .white
@@ -87,6 +87,16 @@ class CharactersCollectionViewCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(with viewModel: CellViewModelProtocol) {
+        nameLabel.text = viewModel.movie.name
+        posterImage.sd_setImage(with: viewModel.imageUrl)
+        ratingLabel.text = viewModel.rating
+        nameLabel.text = viewModel.movie.name
+        engNameLabel.text = viewModel.engNameText
+        detailsLabel.text = viewModel.detailsLabel
+        
     }
 }
 

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import YouTubePlayerKit
 
 class DetailsViewController: UIViewController {
     
@@ -68,12 +67,17 @@ class DetailsViewController: UIViewController {
         return image
     }()
     
+    let ganreLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    
     init(viewModel: DetailsViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         setupBindables()
-        //viewModel.fetchMovieDeatails(with: viewModel.id)
-        viewModel.loadLocalMovieDeatails()
+        viewModel.fetchMovieDeatails(with: viewModel.id)
+        //viewModel.loadLocalMovieDeatails()
     }
     
     required init?(coder: NSCoder) {
@@ -84,19 +88,21 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = false
         setUpView()
+        self.tabBarController?.tabBar.isHidden = true
         
+       
     }
     
     private func setupBindables() {
         viewModel.reload = { [weak self] in
             guard let self = self else { return }
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self  else { return }
-                self.nameLabel.text = self.viewModel.movieDetails?.name
-                self.posterImage.sd_setImage(with: URL(string: (self.viewModel.movieDetails!.poster.url)))
-                self.infoLabel.text = self.viewModel.movieDetails?.alternativeName
-                self.shortDescriptionLabel.text = self.viewModel.movieDetails?.shortDescription
-                self.descriptionLabel.text = self.viewModel.movieDetails?.description
+            DispatchQueue.main.async {
+                guard let movie = self.viewModel.movie else { return }
+                self.nameLabel.text = movie.name
+                self.posterImage.sd_setImage(with: URL(string: (movie.poster.url)))
+                self.infoLabel.text = "\(movie.rating.kp), \(movie.rating.kp), \(movie.alternativeName!)"
+                self.shortDescriptionLabel.text = movie.shortDescription
+                self.descriptionLabel.text = movie.description
             }
         }
     }
@@ -108,7 +114,6 @@ extension DetailsViewController {
         view.addSubview(scrollView)
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: contentView.frame.height)
         scrollView.addSubview(contentView)
         contentView.addSubview(nameLabel)
         contentView.addSubview(posterImage)
@@ -118,7 +123,7 @@ extension DetailsViewController {
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
@@ -127,7 +132,6 @@ extension DetailsViewController {
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             posterImage.topAnchor.constraint(equalTo: contentView.topAnchor),
-            posterImage.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             posterImage.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width) / 1.5),
             posterImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             nameLabel.topAnchor.constraint(equalTo: posterImage.bottomAnchor, constant: 12),
@@ -142,8 +146,7 @@ extension DetailsViewController {
             descriptionLabel.topAnchor.constraint(equalTo: shortDescriptionLabel.bottomAnchor, constant: 16),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
-            
+            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 16)
         ])
     }
 }

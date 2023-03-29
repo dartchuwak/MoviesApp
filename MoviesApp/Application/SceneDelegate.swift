@@ -9,8 +9,8 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
-    private var appCoordinator: AppCoordinator?
-    private lazy var appDependency: AppDependency = AppDependency.makeDefault()
+     var appCoordinator: AppCoordinator?
+     lazy var appDependency: AppDependency = AppDependency.configure()
     
     var window: UIWindow?
     

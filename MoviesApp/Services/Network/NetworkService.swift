@@ -5,7 +5,8 @@ protocol NetworkServiceProtocol: AnyObject {
     func fetchMovieDetails(with id: String, completion: @escaping (Result<Movie, Error>) -> ())
     func searchMovies(with text: String, completion: @escaping (Result<[Movie], Error>) -> ())
     func loadLocalMovies(completion: @escaping (Result<[Movie], Error>) -> ())
-    func loadLocalMoviesDetails(completion: @escaping (Result<Movie, Error>) -> ()) 
+    func loadLocalMoviesDetails(completion: @escaping (Result<Movie, Error>) -> ())
+    func loadLocalScreenshots(completion: @escaping (Result<[Screenshot], Error>) -> ())
 }
 
 class NetworkService: NetworkServiceProtocol {
@@ -135,6 +136,20 @@ class NetworkService: NetworkServiceProtocol {
         do {
             let response = try decoder.decode(Movie.self, from: jsonData)
             completion(.success(response))
+        } catch {
+            completion(.failure(error))
+            print("Error: \(error)")
+        }
+    }
+    
+    func loadLocalScreenshots(completion: @escaping (Result<[Screenshot], Error>) -> ()) {
+        
+        guard let path = Bundle.main.url(forResource: "screenshots", withExtension: "json") else { return }
+        guard let jsonData = try? Data(contentsOf: path) else { return }
+        let decoder = JSONDecoder()
+        do {
+            let response = try decoder.decode(ScreenshotResponse.self, from: jsonData)
+            completion(.success(response.docs))
         } catch {
             completion(.failure(error))
             print("Error: \(error)")

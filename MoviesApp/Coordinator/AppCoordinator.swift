@@ -16,19 +16,17 @@ protocol CoordinatorProtocol: AnyObject {
 class AppCoordinator: CoordinatorProtocol {
     
     private let window: UIWindow?
-    private let appDependency: AppDependency
+    private let appDependency: AppDependencyProtocol
     
-    lazy var rootViewController: UIViewController = {
-        let characterVC = MoviesViewController(viewModel: appDependency.charactersViewModel)
-        characterVC.navigationItem.title = Localize.characters
-        characterVC.tabBarController?.tabBar.tintColor = .brown
+    lazy var rootViewController: UINavigationController = {
+        let characterVC = MoviesViewController(viewModel: appDependency.moviesViewModel)
+        characterVC.navigationItem.title = Localize.movies
         let characterNavController = UINavigationController(rootViewController: characterVC)
-        characterNavController.navigationBar.prefersLargeTitles = true
         return characterNavController
     }()
     
     
-    init(window: UIWindow?, appDependency: AppDependency) {
+    init(window: UIWindow?, appDependency: AppDependencyProtocol) {
         self.window = window
         self.appDependency = appDependency
     }

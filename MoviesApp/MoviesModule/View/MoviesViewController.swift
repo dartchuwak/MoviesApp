@@ -36,18 +36,18 @@ class MoviesViewController: UIViewController, ListModuleViewControllerProtocol, 
     
     init(viewModel: MoviesViewModelProtocol) {
         self.viewModel = viewModel
-        
         super.init(nibName: nil, bundle: nil)
         setupBindables()
         setupSearchBar()
-        viewModel.loadLocalMovies()
+       //viewModel.loadLocalMovies()
+        viewModel.fetchMovies()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         timer.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self]  _ in
             guard let self = self else { print("ERROR!"); return}
@@ -56,7 +56,7 @@ class MoviesViewController: UIViewController, ListModuleViewControllerProtocol, 
         })
     }
     
-    fileprivate func setupSearchBar() {
+    private func setupSearchBar() {
         definesPresentationContext = true
         navigationItem.searchController = self.searchController
         searchController.searchBar.delegate = self
@@ -66,7 +66,6 @@ class MoviesViewController: UIViewController, ListModuleViewControllerProtocol, 
         super.viewDidLoad()
         view.backgroundColor = UIColor(white: 0.95, alpha: 1)
         view.addSubview(collectionView)
-        
         collectionView.dataSource = self
         collectionView.delegate = self
         self.collectionView.register(CharactersCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -74,13 +73,17 @@ class MoviesViewController: UIViewController, ListModuleViewControllerProtocol, 
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             collectionView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        self.tabBarController?.tabBar.isHidden = false
     }
 }
 
@@ -92,12 +95,8 @@ extension MoviesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CharactersCollectionViewCell
         let movie = viewModel.movies[indexPath.row]
-        cell.posterImage.sd_setImage(with: URL(string:movie.poster.previewUrl))
-        cell.ratingLabel.text = "\(movie.rating.kp)"
-        cell.nameLabel.text = movie.name
-        cell.engNameLabel.text = "\(movie.alternativeName ?? ""), \(movie.year)"
-        let ganresArray = movie.genres.map{$0.name}
-        cell.detailsLabel.text = "\(movie.countries.first!.name), \(ganresArray.joined(separator: ", "))"
+        let cellViewModel = CellViewModel(movie: movie)
+        cell.configure(with: cellViewModel)
         return cell
     }
     
@@ -108,14 +107,14 @@ extension MoviesViewController: UICollectionViewDataSource {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-        private func setupBindables() {
-            viewModel.reload = { [weak self] in
-                guard let self = self else { return }
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
+    private func setupBindables() {
+        viewModel.reload = { [weak self] in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
             }
         }
+    }
 }
 
 extension MoviesViewController: UICollectionViewDelegateFlowLayout {
