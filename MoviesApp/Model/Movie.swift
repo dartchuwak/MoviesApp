@@ -17,11 +17,29 @@ struct Movie: Decodable {
     let backdrop: Backdrop?
     let rating: Rating
     let year: Int
+    let movieLength: Int
     let countries: [Countries]
     let genres: [Genres]
     let shortDescription: String?
     let description: String?
-    let isFavorite: Bool?
+    let votes: Vote
+    let persons: [Person]?
+}
+
+struct Person: Decodable {
+    let id: Int
+    let name: String?
+}
+
+//          "id": 40778,
+//          "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_40778.jpg",
+//          "name": "Дэниэл Рэдклифф",
+//          "enName": "Daniel Radcliffe",
+//          "profession": "актеры",
+//          "enProfession": "actor"
+
+struct Vote: Decodable {
+    let kp: Int
 }
 
 struct Poster: Decodable {

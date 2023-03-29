@@ -39,7 +39,7 @@ class MoviesViewController: UIViewController, ListModuleViewControllerProtocol, 
         super.init(nibName: nil, bundle: nil)
         setupBindables()
         setupSearchBar()
-       //viewModel.loadLocalMovies()
+            //  viewModel.loadLocalMovies()
         viewModel.fetchMovies()
     }
     
