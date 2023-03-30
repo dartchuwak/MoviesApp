@@ -7,17 +7,17 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController {
+final class DetailsViewController: UIViewController {
     
     private(set) var viewModel: DetailsViewModelProtocol
     
-    lazy var scrollView: UIScrollView =  {
+    private lazy var scrollView: UIScrollView =  {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
-    lazy var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
@@ -28,7 +28,7 @@ class DetailsViewController: UIViewController {
         return label
     }()
     
-    lazy var ratingLabel: UILabel = {
+    private lazy var ratingLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
@@ -39,7 +39,7 @@ class DetailsViewController: UIViewController {
         return label
     }()
     
-    lazy var votesLabel: UILabel = {
+    private lazy var votesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
@@ -50,7 +50,7 @@ class DetailsViewController: UIViewController {
         return label
     }()
     
-    lazy var englishNameLabel: UILabel = {
+    private lazy var englishNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
@@ -61,7 +61,7 @@ class DetailsViewController: UIViewController {
         return label
     }()
     
-    let detailsLabel: UILabel = {
+    private lazy var detailsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 3
@@ -70,14 +70,14 @@ class DetailsViewController: UIViewController {
         return label
     }()
     
-    let shortDescriptionLabel: UILabel = {
+    private lazy var shortDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 10
         return label
     }()
     
-    lazy var castLabel: UILabel = {
+    private lazy var castLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
@@ -88,16 +88,15 @@ class DetailsViewController: UIViewController {
         return label
     }()
     
-    lazy var infoVStack: UIStackView = {
+    private lazy var infoVStack: UIStackView = {
         let vStack = UIStackView()
         vStack.translatesAutoresizingMaskIntoConstraints = false
         vStack.alignment = .center
-        vStack.backgroundColor = .orange
         vStack.distribution = .fillEqually
         return vStack
     }()
-   
-    let descriptionLabel: UILabel = {
+    
+    private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
@@ -105,14 +104,16 @@ class DetailsViewController: UIViewController {
         return label
     }()
     
-    lazy var posterImage: UIImageView = {
+    private lazy var posterImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
+        image.layer.cornerRadius = 10
+        image.clipsToBounds = true
         return image
     }()
     
-    let ganreLabel: UILabel = {
+    private lazy var ganreLabel: UILabel = {
         let label = UILabel()
         return label
     }()
@@ -122,7 +123,6 @@ class DetailsViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         setupBindables()
         viewModel.fetchMovieDeatails(with: viewModel.id)
-       // viewModel.loadLocalMovieDeatails()
     }
     
     required init?(coder: NSCoder) {
@@ -134,8 +134,6 @@ class DetailsViewController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = false
         setUpView()
         self.tabBarController?.tabBar.isHidden = true
-        
-        
     }
     
     private func setupBindables() {
@@ -174,9 +172,6 @@ extension DetailsViewController {
         
         infoVStack.addArrangedSubview(ratingLabel)
         infoVStack.addArrangedSubview(votesLabel)
-      //  infoVStack.addArrangedSubview(englishNameLabel)
-        
-        
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -189,7 +184,8 @@ extension DetailsViewController {
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             posterImage.topAnchor.constraint(equalTo: contentView.topAnchor),
-            posterImage.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width) / 1.5),
+            posterImage.widthAnchor.constraint(equalToConstant: 200),
+            posterImage.heightAnchor.constraint(equalToConstant: 300),
             posterImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             nameLabel.topAnchor.constraint(equalTo: posterImage.bottomAnchor, constant: 12),
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),

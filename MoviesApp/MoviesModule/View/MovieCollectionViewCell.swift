@@ -10,7 +10,7 @@ import UIKit
 class CharactersCollectionViewCell: UICollectionViewCell {
     
     
-    let posterImage: UIImageView = {
+    private lazy var posterImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.cornerRadius = 10
@@ -18,7 +18,7 @@ class CharactersCollectionViewCell: UICollectionViewCell {
         return image
     }()
     
-    let nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 14, weight: .bold)
@@ -27,7 +27,7 @@ class CharactersCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let engNameLabel: UILabel = {
+    private lazy var engNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 14, weight: .regular)
@@ -36,7 +36,7 @@ class CharactersCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let detailsLabel: UILabel = {
+    private lazy var detailsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 12, weight: .light)
@@ -46,7 +46,7 @@ class CharactersCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let ratingLabel: UILabel = {
+    private lazy var ratingLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .orange
@@ -96,7 +96,6 @@ class CharactersCollectionViewCell: UICollectionViewCell {
         nameLabel.text = viewModel.movie.name
         engNameLabel.text = viewModel.engNameText
         detailsLabel.text = viewModel.detailsLabel
-        
     }
 }
 

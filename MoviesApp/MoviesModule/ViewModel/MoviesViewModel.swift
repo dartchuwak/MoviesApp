@@ -18,7 +18,8 @@ protocol MoviesViewModelProtocol: AnyObject {
     func selectRow(indexPath: IndexPath)
     func fetchMovies()
     func searchMovies(with text: String)
-    func loadLocalMovies()
+    //Use witout API
+    //func loadLocalMovies()
 }
 
 final class MoviesViewModel: MoviesViewModelProtocol {
@@ -49,21 +50,22 @@ final class MoviesViewModel: MoviesViewModelProtocol {
         })
     }
     
-    func loadLocalMovies() {
-        guard !isLoading else { return }
-        isLoading = true
-        networkService.loadLocalMovies(completion: { [weak self] result in
-            guard let self = self  else { return }
-            switch result {
-            case .success(let movies):
-                self.movies = movies
-                self.isLoading = false
-                self.reload?()
-            case .failure(let error):
-                print (error)
-            }
-        })
-    }
+//Use witout API
+//    func loadLocalMovies() {
+//        guard !isLoading else { return }
+//        isLoading = true
+//        networkService.loadLocalMovies(completion: { [weak self] result in
+//            guard let self = self  else { return }
+//            switch result {
+//            case .success(let movies):
+//                self.movies = movies
+//                self.isLoading = false
+//                self.reload?()
+//            case .failure(let error):
+//                print (error)
+//            }
+//        })
+//    }
     
     func searchMovies(with text: String ) {
         guard !isLoading else { return }

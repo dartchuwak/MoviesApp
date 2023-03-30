@@ -15,7 +15,7 @@ protocol CellViewModelProtocol {
     var detailsLabel: String? { get }
 }
 
-class CellViewModel: CellViewModelProtocol {
+final class CellViewModel: CellViewModelProtocol {
     
     var movie: Movie
     var imageUrl: URL?
@@ -27,7 +27,6 @@ class CellViewModel: CellViewModelProtocol {
         self.movie = movie
         prepareData()
     }
-    
     
     private func prepareData() {
         guard let imageUrl = URL(string: movie.poster.previewUrl) else { return }

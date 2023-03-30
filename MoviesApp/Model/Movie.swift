@@ -31,13 +31,6 @@ struct Person: Decodable {
     let name: String?
 }
 
-//          "id": 40778,
-//          "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_40778.jpg",
-//          "name": "Дэниэл Рэдклифф",
-//          "enName": "Daniel Radcliffe",
-//          "profession": "актеры",
-//          "enProfession": "actor"
-
 struct Vote: Decodable {
     let kp: Int
 }
@@ -61,30 +54,6 @@ struct Genres: Decodable {
 
 struct Countries: Decodable {
     let name: String
-}
-
-struct Video: Decodable {
-    
-    let trailers: [Trailer]?
-    let teasers: [Teaser]?
-}
-
-struct Trailer: Decodable {
-    let url: String
-    let name: String
-    let site: String
-}
-
-struct Teaser: Decodable {
-    
-}
-
-struct ScreenshotResponse: Decodable {
-    let docs: [Screenshot]
-}
-
-struct Screenshot: Decodable {
-    let previewUrl: String
 }
 
 struct MoviesResponse: Decodable {

@@ -17,12 +17,16 @@ protocol ListModuleViewControllerProtocol: AnyObject {
 class MoviesViewController: UIViewController, ListModuleViewControllerProtocol, UISearchBarDelegate {
     
     var viewModel: MoviesViewModelProtocol
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var timer = Timer()
     
-    fileprivate let searchController = UISearchController(searchResultsController: nil)
+    private let loader: UIActivityIndicatorView = {
+       let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+       return indicator
+    }()
     
-    var timer = Timer()
-    
-    let collectionView: UICollectionView = {
+    private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 10
@@ -31,6 +35,7 @@ class MoviesViewController: UIViewController, ListModuleViewControllerProtocol, 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.isHidden = true
         return collectionView
     }()
     
@@ -47,7 +52,7 @@ class MoviesViewController: UIViewController, ListModuleViewControllerProtocol, 
         fatalError("init(coder:) has not been implemented")
     }
     
-     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+      func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         timer.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self]  _ in
             guard let self = self else { print("ERROR!"); return}
@@ -66,9 +71,12 @@ class MoviesViewController: UIViewController, ListModuleViewControllerProtocol, 
         super.viewDidLoad()
         view.backgroundColor = UIColor(white: 0.95, alpha: 1)
         view.addSubview(collectionView)
+        view.addSubview(loader)
         collectionView.dataSource = self
         collectionView.delegate = self
         self.collectionView.register(CharactersCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        loader.startAnimating()
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -78,6 +86,8 @@ class MoviesViewController: UIViewController, ListModuleViewControllerProtocol, 
             collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             collectionView.widthAnchor.constraint(equalTo: view.widthAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            loader.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loader.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
@@ -112,9 +122,13 @@ extension MoviesViewController: UICollectionViewDataSource {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                self.loader.stopAnimating()
+                self.collectionView.isHidden = false
             }
         }
     }
+    
+    
 }
 
 extension MoviesViewController: UICollectionViewDelegateFlowLayout {
