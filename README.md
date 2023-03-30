@@ -10,6 +10,8 @@
 
 ### Details: ###
 
+Поиск фильмов по базе Кинопоиска
+
 ### Application Architecture: ###
 MVVM + Coordinator + Services(URLSession)
 ### UI: ###
