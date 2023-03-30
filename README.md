@@ -2,9 +2,10 @@
 ### Screens: ###
 
 <div>
-<img src="https://user-images.githubusercontent.com/109591126/227263847-97201e95-786d-4a60-879e-b9a07c6360a9.png" width=20% height=20%>
-<img src="https://user-images.githubusercontent.com/109591126/227263987-6b2eeeb1-9866-4180-b1ec-adc7c9aed0b4.png" width=20% height=20%>
+<img src="https://user-images.githubusercontent.com/109591126/228863550-b6303680-ee41-4e96-8289-237429087633.png" width=20% height=20%>
+<img src="https://user-images.githubusercontent.com/109591126/228863570-598bb71f-ee87-4560-88ee-f727338e1837.png" width=20% height=20%>
 </div>
+
 
 
 ### Details: ###
