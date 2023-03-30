@@ -2,26 +2,26 @@
 import Foundation
 
 protocol AppDependencyProtocol {
-    var charactersViewModel: MoviesViewModelProtocol { get }
+    var moviesViewModel: MoviesViewModelProtocol { get }
 }
 
 final class AppDependency {
-    private let characterViewModel: MoviesViewModel
+    private let movieViewModel: MoviesViewModel
     
-    init(characterViewModel: MoviesViewModel) {
-        self.characterViewModel = characterViewModel
+    init(movieViewModel: MoviesViewModel) {
+        self.movieViewModel = movieViewModel
     }
     
-    static func makeDefault() -> AppDependency {
-        let characterViewModel = MoviesViewModel()
-        return AppDependency(characterViewModel: characterViewModel)
+    static func configure() -> AppDependency {
+        let movieViewModel = MoviesViewModel()
+        return AppDependency(movieViewModel: movieViewModel)
     }
 }
 
 extension AppDependency: AppDependencyProtocol {
     
-    var charactersViewModel: MoviesViewModelProtocol {
-        self.characterViewModel
+    var moviesViewModel: MoviesViewModelProtocol {
+        self.movieViewModel
     }
 }
 

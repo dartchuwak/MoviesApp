@@ -7,74 +7,207 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController {
+final class DetailsViewController: UIViewController {
     
     private(set) var viewModel: DetailsViewModelProtocol
     
-    lazy var nameLabel: UILabel = {
+    private lazy var scrollView: UIScrollView =  {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    private lazy var nameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.textAlignment = .center
+        label.textColor = .black
+        label.numberOfLines = 2
+        return label
+    }()
+    
+    private lazy var ratingLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
         label.font = .boldSystemFont(ofSize: 24)
         label.textAlignment = .center
-        label.textColor = .white
+        label.font = .systemFont(ofSize: 14, weight: .semibold)
+        label.textColor = .gray
         return label
     }()
     
-    lazy var posterImage: UIImageView = {
+    private lazy var votesLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.font = .boldSystemFont(ofSize: 24)
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.textColor = .gray
+        return label
+    }()
+    
+    private lazy var englishNameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.font = .boldSystemFont(ofSize: 24)
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.textColor = .gray
+        return label
+    }()
+    
+    private lazy var detailsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 3
+        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var shortDescriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 10
+        return label
+    }()
+    
+    private lazy var castLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.font = .boldSystemFont(ofSize: 24)
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.textColor = .gray
+        return label
+    }()
+    
+    private lazy var infoVStack: UIStackView = {
+        let vStack = UIStackView()
+        vStack.translatesAutoresizingMaskIntoConstraints = false
+        vStack.alignment = .center
+        vStack.distribution = .fillEqually
+        return vStack
+    }()
+    
+    private lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 14, weight: .light)
+        return label
+    }()
+    
+    private lazy var posterImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
+        image.layer.cornerRadius = 10
+        image.clipsToBounds = true
         return image
+    }()
+    
+    private lazy var ganreLabel: UILabel = {
+        let label = UILabel()
+        return label
     }()
     
     init(viewModel: DetailsViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         setupBindables()
-        viewModel.fetchData(with: viewModel.id)
+        viewModel.fetchMovieDeatails(with: viewModel.id)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.prefersLargeTitles = false
         setUpView()
-        view.backgroundColor = .black
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     private func setupBindables() {
         viewModel.reload = { [weak self] in
             guard let self = self else { return }
-            DispatchQueue.main.async { [weak self] in
-                self?.nameLabel.text = self?.viewModel.movieDetails?.title
-                self?.posterImage.sd_setImage(with: URL(string: (self?.viewModel.movieDetails!.image)!))
+            DispatchQueue.main.async {
+                guard let movie = self.viewModel.movie else { return }
+                self.posterImage.sd_setImage(with: URL(string: (movie.poster.url)))
+                self.nameLabel.text = movie.name
+                self.ratingLabel.text = self.viewModel.rating
+                self.votesLabel.text = self.viewModel.votes
+                self.detailsLabel.text = self.viewModel.details
+                self.englishNameLabel.text = movie.alternativeName
+                self.shortDescriptionLabel.text = movie.shortDescription
+                self.descriptionLabel.text = movie.description
+                self.castLabel.text = self.viewModel.personsString
             }
         }
     }
 }
 
 extension DetailsViewController {
-    
     private func setUpView() {
         view.backgroundColor = .white
-        view.addSubview(nameLabel)
-        view.addSubview(posterImage)
+        view.addSubview(scrollView)
+        let contentView = UIView()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(contentView)
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(posterImage)
+        contentView.addSubview(shortDescriptionLabel)
+        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(infoVStack)
+        contentView.addSubview(detailsLabel)
+        contentView.addSubview(castLabel)
+        
+        infoVStack.addArrangedSubview(ratingLabel)
+        infoVStack.addArrangedSubview(votesLabel)
         
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
-            nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            posterImage.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 24),
-            posterImage.widthAnchor.constraint(equalTo: view.widthAnchor),
-            posterImage.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width) / 0.667),
-            posterImage.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            posterImage.topAnchor.constraint(equalTo: contentView.topAnchor),
+            posterImage.widthAnchor.constraint(equalToConstant: 200),
+            posterImage.heightAnchor.constraint(equalToConstant: 300),
+            posterImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            nameLabel.topAnchor.constraint(equalTo: posterImage.bottomAnchor, constant: 12),
+            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            infoVStack.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 12),
+            infoVStack.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            infoVStack.widthAnchor.constraint(equalToConstant: 100),
+            detailsLabel.topAnchor.constraint(equalTo: infoVStack.bottomAnchor, constant: 16),
+            detailsLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            detailsLabel.widthAnchor.constraint(equalToConstant: 250),
+            
+            castLabel.topAnchor.constraint(equalTo: detailsLabel.bottomAnchor, constant: 16),
+            castLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            castLabel.widthAnchor.constraint(equalToConstant: 250),
+            
+            shortDescriptionLabel.topAnchor.constraint(equalTo: castLabel.bottomAnchor, constant: 16),
+            shortDescriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            shortDescriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            descriptionLabel.topAnchor.constraint(equalTo: shortDescriptionLabel.bottomAnchor, constant: 16),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 16)
         ])
     }
 }
