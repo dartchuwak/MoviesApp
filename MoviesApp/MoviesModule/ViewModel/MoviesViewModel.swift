@@ -42,7 +42,7 @@ final class MoviesViewModel: MoviesViewModelProtocol {
             switch result {
             case .success(let movies):
                 DispatchQueue.main.async {
-                    self.movies = movies
+                    self.movies = movies.docs
                     self.isLoading = false
                     self.reload?()
                 }
@@ -61,7 +61,7 @@ final class MoviesViewModel: MoviesViewModelProtocol {
             switch result {
             case .success(let movies):
                 DispatchQueue.main.async {
-                    self.movies = movies
+                    self.movies = movies.docs
                     self.isLoading = false
                     self.reload?()
                 }

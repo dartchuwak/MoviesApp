@@ -34,6 +34,7 @@ final class DetailsViewModel: DetailsViewModelProtocol {
     init (id: Int , networkService: NetworkServiceProtocol) {
         self.id = id
         self.networkService = networkService
+        fetchMovieDeatails(with: id)
     }
     
     func fetchMovieDeatails(with id: Int)  {
@@ -48,7 +49,7 @@ final class DetailsViewModel: DetailsViewModelProtocol {
                 DispatchQueue.main.async {
                     self.movie = movie
                     self.prepareData(movie: movie)
-                    self.reload?()                    
+                    self.reload?()
                 }
             case .failure(let error):
                 print (error)

@@ -122,7 +122,7 @@ final class DetailsViewController: UIViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         setupBindables()
-        viewModel.fetchMovieDeatails(with: viewModel.id)
+       // viewModel.fetchMovieDeatails(with: viewModel.id)
     }
     
     required init?(coder: NSCoder) {
