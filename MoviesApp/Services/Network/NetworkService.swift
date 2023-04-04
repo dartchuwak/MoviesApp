@@ -1,9 +1,9 @@
 import Foundation
 
 protocol NetworkServiceProtocol: AnyObject {
-    func fetchMovies(completion: @escaping (Result<[Movie], Error>) -> ())
-    func fetchMovieDetails(with id: String, completion: @escaping (Result<Movie, Error>) -> ())
-    func searchMovies(with text: String, completion: @escaping (Result<[Movie], Error>) -> ())
+    func fetchMovies() async -> Result<[Movie], NetworkError>
+    func fetchMovieDetails(with id: String) async -> Result<Movie, NetworkError>
+    func searchMovies(with text: String) async -> Result<[Movie], NetworkError>
     //Use witout API
 //    func loadLocalMovies(completion: @escaping (Result<[Movie], Error>) -> ())
 //    func loadLocalMoviesDetails(completion: @escaping (Result<Movie, Error>) -> ())
@@ -16,102 +16,60 @@ class NetworkService: NetworkServiceProtocol {
         self.session = session
     }
     
-    func fetchMovies(completion: @escaping (Result<[Movie], Error>) -> ()) {
-        guard var url = URLComponents(string: "https://api.kinopoisk.dev/v1/movie") else { return }
+    func fetchMovies() async -> Result<[Movie], NetworkError> {
+        guard var url = URLComponents(string: "https://api.kinopoisk.dev/v1/movie") else { return .failure(.invalidURL) }
         url.queryItems = [
             URLQueryItem(name: "limit", value: "20"),
-            URLQueryItem(name: "backdrop.previewUrl", value: "!null"),
+            URLQueryItem(name: "backdrop.previewUrl", value: "!null")
         ]
-        guard let url = url.url else { return }
+        guard let url = url.url else { return  .failure((.invalidURL))}
         var request = URLRequest(url: url)
         request.addValue("TMSVW3E-05TMGH9-MMW9SWN-20GAGBY", forHTTPHeaderField: "x-api-key")
         
-        let task = session.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(NetworkError.emptyResponse))
-                return
-            }
-            
-            do {
-                let response = try JSONDecoder().decode(MoviesResponse.self, from: data)
-                completion(.success(response.docs))
-            } catch {
-                completion(.failure(error))
-                print("Error: \(error)")
-            }
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let result = try JSONDecoder().decode(MoviesResponse.self, from: data)
+            return .success(result.docs)
+        } catch {
+            return .failure(.emptyResponse)
         }
-        task.resume()
     }
     
-    func fetchMovieDetails(with id: String, completion: @escaping (Result<Movie, Error>) -> ()) {
-        guard let url = URL(string: "https://api.kinopoisk.dev/v1/movie/\(id)") else {
-            completion(.failure(NetworkError.invalidURL))
-            return
-        }
+    
+    func fetchMovieDetails(with id: String) async -> Result<Movie, NetworkError> {
+        guard let url = URL(string: "https://api.kinopoisk.dev/v1/movie/\(id)") else { return .failure(.invalidURL)}
         
         var request = URLRequest(url: url)
         request.addValue("TMSVW3E-05TMGH9-MMW9SWN-20GAGBY", forHTTPHeaderField: "x-api-key")
         
-        let task = session.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(NetworkError.emptyResponse))
-                return
-            }
-            
-            do {
-                let response = try JSONDecoder().decode(Movie.self, from: data)
-                completion(.success(response))
-            } catch {
-                completion(.failure(error))
-                print("Error: \(error)")
-            }
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let result = try JSONDecoder().decode(Movie.self, from: data)
+            return .success(result)
+        } catch {
+            return .failure(.emptyResponse)
         }
-        task.resume()
     }
     
-    func searchMovies(with text: String, completion: @escaping (Result<[Movie], Error>) -> ()) {
+    func searchMovies(with text: String) async -> Result<[Movie], NetworkError> {
         
-        guard var url = URLComponents(string: "https://api.kinopoisk.dev/v1/movie") else { return }
+        guard var url = URLComponents(string: "https://api.kinopoisk.dev/v1/movie") else { return .failure(.invalidURL) }
         url.queryItems = [
             URLQueryItem(name: "name", value: text),
             URLQueryItem(name: "limit", value: "20"),
             URLQueryItem(name: "backdrop.url", value: "!null"),
         ]
-        guard let url = url.url else { return }
+        guard let url = url.url else { return .failure(.invalidURL)}
         var request = URLRequest(url: url)
         request.addValue("TMSVW3E-05TMGH9-MMW9SWN-20GAGBY", forHTTPHeaderField: "x-api-key")
-        print(request)
         
-        let task = session.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(NetworkError.emptyResponse))
-                return
-            }
-            
-            do {
-                let response = try JSONDecoder().decode(MoviesResponse.self, from: data)
-                completion(.success(response.docs))
-            } catch {
-                completion(.failure(error))
-                print("Error: \(error)")
-            }
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let result = try JSONDecoder().decode(MoviesResponse.self, from: data)
+            return .success(result.docs)
+        } catch {
+            return .failure(.emptyResponse)
         }
-        task.resume()
     }
     
     //Use witout API

@@ -18,8 +18,6 @@ protocol MoviesViewModelProtocol: AnyObject {
     func selectRow(indexPath: IndexPath)
     func fetchMovies()
     func searchMovies(with text: String)
-    //Use witout API
-    //func loadLocalMovies()
 }
 
 final class MoviesViewModel: MoviesViewModelProtocol {
@@ -35,50 +33,40 @@ final class MoviesViewModel: MoviesViewModelProtocol {
     }
     
     func fetchMovies() {
-        guard !isLoading else { return }
-        isLoading = true
-        networkService.fetchMovies(completion: { [weak self] result in
-            guard let self = self  else { return }
+        Task.init {
+            guard !isLoading else { return }
+            isLoading = true
+            
+            let result = await networkService.fetchMovies()
+            
             switch result {
             case .success(let movies):
-                self.movies = movies
-                self.isLoading = false
-                self.reload?()
+                DispatchQueue.main.async {
+                    self.movies = movies
+                    self.isLoading = false
+                    self.reload?()
+                }
             case .failure(let error):
-                print (error)
+                print ("Error: \(error)")
             }
-        })
+            
+        }
     }
-    
-//Use witout API
-//    func loadLocalMovies() {
-//        guard !isLoading else { return }
-//        isLoading = true
-//        networkService.loadLocalMovies(completion: { [weak self] result in
-//            guard let self = self  else { return }
-//            switch result {
-//            case .success(let movies):
-//                self.movies = movies
-//                self.isLoading = false
-//                self.reload?()
-//            case .failure(let error):
-//                print (error)
-//            }
-//        })
-//    }
     
     func searchMovies(with text: String ) {
         guard !isLoading else { return }
         isLoading = true
-        networkService.searchMovies(with: text) { [weak self] result in
-            guard let self = self  else { return }
+        Task {
+            let result = await networkService.searchMovies(with: text)
             switch result {
             case .success(let movies):
-                self.movies = movies
-                self.isLoading = false
-                self.reload?()
+                DispatchQueue.main.async {
+                    self.movies = movies
+                    self.isLoading = false
+                    self.reload?()
+                }
             case .failure(let error):
-                print (error)
+                print ("Error: \(error)")
             }
         }
     }
@@ -87,9 +75,8 @@ final class MoviesViewModel: MoviesViewModelProtocol {
         guard let indexPath = selectedIndexPath else { return nil }
         return DetailsViewModel(id: movies[indexPath.row].id,  networkService: NetworkService())
     }
-
+    
     func selectRow(indexPath: IndexPath) {
         self.selectedIndexPath = indexPath
     }
-    
 }
