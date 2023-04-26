@@ -18,6 +18,7 @@ protocol MoviesViewModelProtocol: AnyObject {
     func selectRow(indexPath: IndexPath)
     func fetchMovies()
     func searchMovies(with text: String)
+    var noData: Bool { get }
 }
 
 final class MoviesViewModel: MoviesViewModelProtocol {
@@ -27,6 +28,7 @@ final class MoviesViewModel: MoviesViewModelProtocol {
     var movies: [Movie] = []
     var reload: (() -> ())?
     var movieRating: String?
+    var noData: Bool = false
     
     func numberOfItemsInSection() -> Int {
         return movies.count
@@ -47,7 +49,11 @@ final class MoviesViewModel: MoviesViewModelProtocol {
                     self.reload?()
                 }
             case .failure(let error):
-                print ("Error: \(error)")
+                DispatchQueue.main.async {
+                    self.noData = false
+                    print ("Error: \(error)")
+                }
+                
             }
             
         }

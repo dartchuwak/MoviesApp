@@ -44,7 +44,6 @@ class MoviesViewController: UIViewController, ListModuleViewControllerProtocol, 
         super.init(nibName: nil, bundle: nil)
         setupBindables()
         setupSearchBar()
-            //  viewModel.loadLocalMovies()
         viewModel.fetchMovies()
     }
     
@@ -55,8 +54,7 @@ class MoviesViewController: UIViewController, ListModuleViewControllerProtocol, 
       func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         timer.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self]  _ in
-            guard let self = self else { print("ERROR!"); return}
-            print(searchText)
+            guard let self = self else {return}
             self.viewModel.searchMovies(with: searchText)
         })
     }
@@ -120,11 +118,13 @@ extension MoviesViewController: UICollectionViewDataSource {
     private func setupBindables() {
         viewModel.reload = { [weak self] in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-                self.loader.stopAnimating()
-                self.collectionView.isHidden = false
-            }
+            if viewModel.noData == false {
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.loader.stopAnimating()
+                    self.collectionView.isHidden = false
+                }
+            } else { print ("nodata")}
         }
     }
     

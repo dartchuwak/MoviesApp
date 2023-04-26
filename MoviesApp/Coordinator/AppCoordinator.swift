@@ -19,10 +19,10 @@ class AppCoordinator: CoordinatorProtocol {
     private let appDependency: AppDependencyProtocol
     
     lazy var rootViewController: UINavigationController = {
-        let characterVC = MoviesViewController(viewModel: appDependency.moviesViewModel)
-        characterVC.navigationItem.title = Localize.movies
-        let characterNavController = UINavigationController(rootViewController: characterVC)
-        return characterNavController
+        let moviesVC = MoviesViewController(viewModel: appDependency.moviesViewModel)
+        moviesVC.navigationItem.title = Localize.movies
+        let moviesNavController = UINavigationController(rootViewController: moviesVC)
+        return moviesNavController
     }()
     
     
